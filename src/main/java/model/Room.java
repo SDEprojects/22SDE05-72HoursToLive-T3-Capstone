@@ -7,6 +7,7 @@ import java.util.Map;
 
 public class Room {
 
+    // fields and lists
     private String name;
     private String description;
     private Map<String,String> connectedRooms;
@@ -14,6 +15,7 @@ public class Room {
 
     public static String currentRoom;
 
+    // room method and attributes
     public Room() {
     connectedRooms = new HashMap<>();
     items = new ArrayList<>();
@@ -36,6 +38,7 @@ public class Room {
         this.items = items;
     }
 
+    // room getter and setter methods
     public String getName() {
         return name;
     }
