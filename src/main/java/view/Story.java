@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.util.ResourceBundle;
 import java.util.Scanner;
 
+//ALL Scanners and SOUTs need to be replaced with a "Printer" class
 public class Story {
     Scanner scanner = new Scanner(System.in);
     public static int difficulty = 0;
@@ -117,9 +118,11 @@ public class Story {
 
     }
 
+    //Same as "Map" I don't remember seeing this during game play
     public void introText() {
 
-        String storyBanner = "███████╗████████╗ ██████╗ ██████╗ ██╗   ██╗██╗     ██╗███╗   ██╗███████╗\n" +
+        String storyBanner =
+                "███████╗████████╗ ██████╗ ██████╗ ██╗   ██╗██╗     ██╗███╗   ██╗███████╗\n" +
                 "██╔════╝╚══██╔══╝██╔═══██╗██╔══██╗╚██╗ ██╔╝██║     ██║████╗  ██║██╔════╝\n" +
                 "███████╗   ██║   ██║   ██║██████╔╝ ╚████╔╝ ██║     ██║██╔██╗ ██║█████╗  \n" +
                 "╚════██║   ██║   ██║   ██║██╔══██╗  ╚██╔╝  ██║     ██║██║╚██╗██║██╔══╝  \n" +

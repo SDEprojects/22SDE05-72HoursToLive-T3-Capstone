@@ -5,8 +5,10 @@ import main.java.model.Room;
 import main.java.model.RoomMovement;
 import main.java.model.Soldier;
 
-public class View {
 
+//ALL Scanners and SOUTs need to be replaced with a "Printer" class
+
+public class View {
 
     public static void menu() {
         String cyan = TextColor.CYAN;
