@@ -1,6 +1,6 @@
 package main.java.client;
 
-
+//imports from other packages
 import main.java.controller.GameSettings;
 import main.java.view.Music;
 import main.java.view.Story;
@@ -20,7 +20,7 @@ public class Client {
         gameSettings.startGame();
         gameSettings.endGame();
 
-    }
+    }//This resets the game
     public static void repeatGame() throws IOException {
         GameSettings gameSettings = new GameSettings();
         Story story = new Story();
