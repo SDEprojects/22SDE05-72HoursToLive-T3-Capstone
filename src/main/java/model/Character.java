@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Character {
+
+    //fields and lists
     private String name;
 
     private String location;
@@ -12,6 +14,7 @@ public abstract class Character {
     private List<String> inventory;
     private int armorRating;
 
+    //character method and attributes
     public Character(){
         this("", "", 100, 10, new ArrayList<String>(), 10);
     }
@@ -26,7 +29,7 @@ public abstract class Character {
     }
 
 
-
+    //character attributes - getter and setter methods
     public String getName() {
         return name;
     }

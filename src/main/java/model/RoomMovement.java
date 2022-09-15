@@ -10,10 +10,12 @@ import java.util.*;
 
 
 public class RoomMovement {
+
+    // fields
     public static String currentRoom;
     public static Room roomSwitcher;
 
-
+    // defining lists and setting up for JSON parsing
     //    Room room = new Room();
     ObjectMapper mapper = new ObjectMapper();
     TypeReference<HashMap<String, Room>> typeRef  = new TypeReference<HashMap<String, Room>>() {};
@@ -21,8 +23,9 @@ public class RoomMovement {
 
     private static HashMap<String, HashSet<String>> itemMap;
     static HashMap<String, Room> allRooms;
-    private static final ResourceBundle bundle = ResourceBundle.getBundle("main.resources.strings");
 
+    // parsing JSON files for use
+    private static final ResourceBundle bundle = ResourceBundle.getBundle("main.resources.strings");
 
     {
         try {
@@ -40,6 +43,8 @@ public class RoomMovement {
             throw new RuntimeException(e);
         }
     }
+
+    // adds random items to each room from JSON list of items
     private static void populateRoomWithItems(int numItems){
         ArrayList<String> keyList = new ArrayList<>(itemMap.keySet());
         Random random = new Random();
@@ -78,20 +83,19 @@ public class RoomMovement {
         sleep(550);
     }
 
-
+    // method allows player to transition rooms
     public static void switchRooms(String location) throws IOException {
         currentRoom = roomSwitcher.getConnectedRooms().get(location);
         Room room = allRooms.get(currentRoom);
         roomSwitcher = room;
     }
 
-
-
+    // getter - returns all rooms
     public static HashMap<String, Room> getAllRooms(){
         return allRooms;
     }
 
-
+    // timer to pause game flow for text reading, etc.
     public static void sleep(int timer) {
         try {
             Thread.sleep(timer);
@@ -99,6 +103,8 @@ public class RoomMovement {
             throw new RuntimeException(e);
         }
     }
+
+    // method allows for the slow printing of text across the terminal.
     private String textStream(String text, int speed) {
         for (int i = 0; i < text.length(); i++) {
             System.out.printf("%c", text.charAt(i));
