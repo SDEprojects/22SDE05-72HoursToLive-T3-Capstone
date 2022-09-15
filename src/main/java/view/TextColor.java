@@ -1,5 +1,6 @@
 package main.java.view;
 
+//Text colors
 public class TextColor {
     public static final String RED = "\u001B[31m";
     public static final String BLUE = "\u001B[34m";

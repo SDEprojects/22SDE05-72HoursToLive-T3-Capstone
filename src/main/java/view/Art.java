@@ -1,5 +1,6 @@
 package main.java.view;
 
+//This art shows up with additional text as the timer reaches 0
 public class Art {
 
     public static String wolfHowl = "                              __\n" +
@@ -30,7 +31,7 @@ public class Art {
             "                           ;";
 
     public static String fullMoon =
-            "  █████▒█    ██  ██▓     ██▓        ███▄ ▄███▓ ▒█████   ▒█████   ███▄    █ \n" +
+                    "  █████▒█    ██  ██▓     ██▓        ███▄ ▄███▓ ▒█████   ▒█████   ███▄    █ \n" +
                     "▓██   ▒ ██  ▓██▒▓██▒    ▓██▒       ▓██▒▀█▀ ██▒▒██▒  ██▒▒██▒  ██▒ ██ ▀█   █ \n" +
                     "▒████ ░▓██  ▒██░▒██░    ▒██░       ▓██    ▓██░▒██░  ██▒▒██░  ██▒▓██  ▀█ ██▒\n" +
                     "░▓█▒  ░▓▓█  ░██░▒██░    ▒██░       ▒██    ▒██ ▒██   ██░▒██   ██░▓██▒  ▐▌██▒\n" +
