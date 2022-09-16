@@ -29,6 +29,7 @@ public class JPanel_GameOutput extends JPanel{
         gameTextArea.setSelectionColor(Color.green);
         gameTextArea.setLineWrap(true);
         gameTextArea.setWrapStyleWord(true);
+        gameTextArea.setToolTipText("Enter your response in the panel below");
         this.add(gameTextArea);
 
         this.add(userInputPanel, BorderLayout.CENTER);
