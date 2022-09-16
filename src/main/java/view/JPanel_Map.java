@@ -9,7 +9,7 @@ public class JPanel_Map extends JPanel {
 
         this.setBackground(Color.black);
         this.setBorder(BorderFactory.createLineBorder(Color.black));
-        this.setBounds(0,525,1000,300);
+        this.setBounds(0,750,1250,225);
         JLabel mapLabel = new JLabel("Map");
         mapLabel.setForeground(Color.white);
 //        this.add(mapLabel);

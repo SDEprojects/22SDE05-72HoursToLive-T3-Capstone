@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 public class JPanel_InformationBar extends JPanel{
     public JPanel_InformationBar() {
         this.setBackground(new Color(31,107,0));
-        this.setBounds(0,500,1000,25);
+        this.setBounds(0,725,1250,25);
 
         this.add(new JLabel("Mode"));
         JTextArea modeText = new JTextArea("Easy");

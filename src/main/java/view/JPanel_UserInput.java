@@ -8,7 +8,7 @@ public class JPanel_UserInput extends JPanel {
         this.setBackground(Color.gray);
 
 
-        JTextArea userInputTextArea = new JTextArea("go west", 9, 82);
+        JTextArea userInputTextArea = new JTextArea("go west", 9, 103);
         userInputTextArea.setBackground(new Color(5,8,6));
         userInputTextArea.setForeground(Color.green);
         userInputTextArea.setLineWrap(true);
