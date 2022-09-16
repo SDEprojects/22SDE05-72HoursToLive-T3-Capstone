@@ -7,11 +7,15 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.ResourceBundle;
 
+//ALL Scanners and SOUTs need to be replaced with a "Printer" class
+
 public class GameMap {
     static final ResourceBundle bundle = ResourceBundle.getBundle("main.resources.strings");
 
+    //This says it's used once, but I don't remember it in the game. Maybe never gets called?
     public static void showMap(){
-        String mapBanner = "\n███╗   ███╗ █████╗ ██████╗ \n" +
+        String mapBanner = "\n" +
+                "███╗   ███╗ █████╗ ██████╗ \n" +
                 "████╗ ████║██╔══██╗██╔══██╗\n" +
                 "██╔████╔██║███████║██████╔╝\n" +
                 "██║╚██╔╝██║██╔══██║██╔═══╝ \n" +

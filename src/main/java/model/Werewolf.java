@@ -7,7 +7,7 @@ import java.util.Random;
 
 public class Werewolf extends Character{
 
-
+    // werewolf method sets up attributes for a werewolf enemy
     public Werewolf() {
         this("A werewolf", "", 100, 10, new ArrayList<String>(), 10);
 
@@ -16,6 +16,8 @@ public class Werewolf extends Character{
     public Werewolf(String name, String location, int health, int attackPower, List<String> inventory, int armorRating){
         super(name, location, health, attackPower, new LinkedList<>(), 0);
     }
+
+    // controls damage taken to werewolf by player - override form character class
     @Override
     public void gotAttacked(Character enemy){
 

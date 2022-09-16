@@ -5,9 +5,12 @@ import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
+//ALL Scanners and SOUTs need to be replaced with a "Printer" class
 
+//Music that can loop throughout the game
 public class Music {
     public static boolean musicOn = true;
+    //add volume options
 
     public Music() throws UnsupportedAudioFileException, IOException {
     }
@@ -36,6 +39,7 @@ public class Music {
         thread.start();
     }
 
+    //Player can select if the music plays or not
     public static void playerSelectMusic() throws UnsupportedAudioFileException, LineUnavailableException, IOException {
         Music music = new Music();
         if (Music.musicOn) {

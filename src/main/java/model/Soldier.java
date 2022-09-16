@@ -6,9 +6,15 @@ import main.java.view.TextColor;
 import java.util.*;
 
 public class Soldier extends Character{
+
+    // fields
     boolean visible;
     boolean armor;
+
+    //setting up for JSON parsing for soldier class
     private static final ResourceBundle bundle = ResourceBundle.getBundle("main.resources.strings");
+
+    // soldier methods
     public Soldier(){
         super();
         visible = true;
@@ -21,6 +27,7 @@ public class Soldier extends Character{
         armor = false;
     }
 
+    // attack method for soldier class - override from character class
     @Override
     public void attack(Character enemy){
         System.out.println(TextColor.GREEN+"You strike the werewolf with all your might!");
@@ -29,6 +36,7 @@ public class Soldier extends Character{
         sleep(750);
     }
 
+    // getting attacked method for soldier class - override from character class
     @Override
     public void gotAttacked(Character enemy){
         if (!visible){
@@ -46,9 +54,13 @@ public class Soldier extends Character{
         int high = 6;
         setHealth(getHealth() - (((attack * 10) / getArmorRating()) - (r.nextInt(high-low) + low)+4) - Story.difficulty);
     }
+
+    // method allows player to pick up an item and add it to inventory
     public void pickup(String item){
         getInventory().add(item);
     }
+
+    // method outlines a player using an item and what that item does for player stats.
     public void useItems(String item) {
         ArrayList<String> heavyArmor = new ArrayList<>(Arrays.asList("breastplate", "helmet", "shield", "greaves"));
         ArrayList<String> lightArmor = new ArrayList<>(Arrays.asList("boots", "gloves",
@@ -113,6 +125,7 @@ public class Soldier extends Character{
                 '}';
     }
 
+    // sleep timer
     public void sleep(int timer) {
         try {
             Thread.sleep(timer);
