@@ -5,12 +5,10 @@ import java.awt.*;
 import java.util.ResourceBundle;
 
 public class JPanel_GameOutput extends JPanel{
-    private final JPanel_UserInput userInputPanel = new JPanel_UserInput();
-
     public JPanel_GameOutput() {
         this.setBackground(Color.gray);
         this.setBorder(BorderFactory.createLineBorder(Color.black));
-        this.setBounds(0,0,1250,725);
+        this.setBounds(0,0,1250,570);
 
         String testGameText =
             "You wake up in a daze...\n" +
@@ -28,8 +26,5 @@ public class JPanel_GameOutput extends JPanel{
         gameTextArea.setWrapStyleWord(true);
         gameTextArea.setToolTipText("Enter your response in the panel below");
         this.add(gameTextArea);
-
-        this.add(userInputPanel, BorderLayout.CENTER);
-
     }
 }

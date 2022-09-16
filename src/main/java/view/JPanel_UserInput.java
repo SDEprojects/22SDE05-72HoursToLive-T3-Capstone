@@ -6,6 +6,8 @@ import java.awt.*;
 public class JPanel_UserInput extends JPanel {
     public JPanel_UserInput() {
         this.setBackground(Color.gray);
+        this.setBorder(BorderFactory.createLineBorder(Color.black));
+        this.setBounds(0,570,1250,155);
 
 
         JTextArea userInputTextArea = new JTextArea("go west", 9, 103);
