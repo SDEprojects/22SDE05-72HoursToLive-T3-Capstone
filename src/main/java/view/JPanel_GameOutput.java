@@ -2,6 +2,7 @@ package main.java.view;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ResourceBundle;
 
 public class JPanel_GameOutput extends JPanel{
     private final JPanel_UserInput userInputPanel = new JPanel_UserInput();
