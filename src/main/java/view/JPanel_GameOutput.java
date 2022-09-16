@@ -5,11 +5,11 @@ import java.awt.*;
 import java.util.ResourceBundle;
 
 public class JPanel_GameOutput extends JPanel{
-    JTextArea gameTextArea = new JTextArea("", 35, 101);
+    JTextArea gameTextArea = new JTextArea("", 35, 103);
     public JPanel_GameOutput() {
         this.setBackground(Color.gray);
         this.setBorder(BorderFactory.createLineBorder(Color.black));
-        this.setBounds(3,0,1247,570);
+        this.setBounds(0,0,1250,570);
 
         gameTextArea.setEditable(false);
         gameTextArea.setForeground(Color.green);
@@ -17,8 +17,6 @@ public class JPanel_GameOutput extends JPanel{
         gameTextArea.setSelectionColor(Color.green);
         gameTextArea.setLineWrap(true);
         gameTextArea.setWrapStyleWord(true);
-        JScrollPane scrollPane = new JScrollPane(gameTextArea, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-        this.add(scrollPane);
         gameTextArea.setToolTipText("Enter your response in the panel below");
         this.add(gameTextArea);
     }

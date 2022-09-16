@@ -98,7 +98,7 @@ public class Story {
         gameOutputPanel.appendGameTextArea(TextColor.WHITE+bundle.getString("title_screen") +TextColor.RESET);
         while (true) {
             String intro = scanner.next();
-            for (int i = 0; i < 70; ++i) System.out.println();
+            gameOutputPanel.clearGameTextArea();
             if (intro.equalsIgnoreCase("play")) {
                 gameOutputPanel.appendGameTextArea(TextColor.WHITE + bundle.getString("start_game"));
                 sleep(1000);
