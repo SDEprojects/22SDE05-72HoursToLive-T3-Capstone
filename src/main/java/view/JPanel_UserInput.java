@@ -5,15 +5,21 @@ import java.awt.*;
 
 public class JPanel_UserInput extends JPanel {
     public JPanel_UserInput() {
-        this.setBackground(Color.LIGHT_GRAY);
-        this.setBorder(BorderFactory.createEmptyBorder(30, 30, 10, 30));
-        this.setBounds(0,500,500,500);
-        this.add(new JLabel("Player Input"));
+        this.setLayout(new GridLayout(2, 0,0,0));
 
-        JTextArea textArea = new JTextArea("");
-        textArea.setLineWrap(true);
-        textArea.setWrapStyleWord(true);
-        JScrollPane scrollPane = new JScrollPane(textArea);
-        this.add(textArea);
+        this.setBackground(Color.white);
+        JLabel userInput = new JLabel("User Input");
+        userInput.setHorizontalAlignment(JLabel.CENTER);
+        userInput.setForeground(Color.black);
+        this.add(userInput);
+
+        JTextArea userInputTextArea = new JTextArea("", 9, 82);
+        userInputTextArea.setBackground(Color.black);
+        userInputTextArea.setForeground(Color.white);
+
+        userInputTextArea.setLineWrap(true);
+        userInputTextArea.setWrapStyleWord(true);
+        JScrollPane scrollPane = new JScrollPane(userInputTextArea);
+        this.add(userInputTextArea);
     }
 }

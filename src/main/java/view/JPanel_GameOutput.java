@@ -4,16 +4,33 @@ import javax.swing.*;
 import java.awt.*;
 
 public class JPanel_GameOutput extends JPanel{
-    public JPanel_GameOutput() {
-        this.setBackground(Color.cyan);
-        this.setBorder(BorderFactory.createEmptyBorder(30, 30, 10, 30));
-        this.setBounds(0,0,1000,500);
-        this.add(new JLabel("Game Output"));
+    private final JPanel_UserInput userInputPanel = new JPanel_UserInput();
 
-        JTextArea textArea = new JTextArea("");
-        textArea.setLineWrap(true);
-        textArea.setWrapStyleWord(true);
-        JScrollPane scrollPane = new JScrollPane(textArea);
-        this.add(textArea);
+    public JPanel_GameOutput() {
+        this.setBackground(Color.gray);
+        this.setBorder(BorderFactory.createLineBorder(Color.black));
+        this.setBounds(0,0,1000,500);
+        JLabel gameOutput = new JLabel("Game Output");
+        gameOutput.setHorizontalAlignment(JLabel.CENTER);
+        this.add(gameOutput);
+
+        String testGameText =
+            "You wake up in a daze...\n" +
+            "You look around to collect your bearings...Nothing seems quite real.\n" +
+            "\nYou suddenly remember your mission, you were sent back in time to collect the blood of the " +
+            "Werewolf King and return home!\n\nYou are in the Garden.\nThe Garden is a large open area" +
+            " with bright flowers and a fountain. It is a place to relax and enjoy the sun.";
+
+        JTextArea gameTextArea = new JTextArea(testGameText, 19, 82);
+        gameTextArea.setEditable(false);
+        gameTextArea.setForeground(Color.green);
+        gameTextArea.setBackground(Color.black);
+        gameTextArea.setSelectionColor(Color.green);
+        gameTextArea.setLineWrap(true);
+        gameTextArea.setWrapStyleWord(true);
+        this.add(gameTextArea);
+
+        this.add(userInputPanel, BorderLayout.CENTER);
+
     }
 }
