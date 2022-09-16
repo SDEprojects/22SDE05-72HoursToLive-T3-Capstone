@@ -81,6 +81,58 @@ public class Story {
         }
     }
 
+    public void titleScreen(JPanel_GameOutput gameOutputPanel) throws UnsupportedAudioFileException, LineUnavailableException, IOException {
+        String titleBanner =
+
+                "\n███████╗███████╗██╗   ██╗███████╗███╗   ██╗████████╗██╗   ██╗    ████████╗██╗    ██╗ ██████╗     ██╗  ██╗ ██████╗ ██╗   ██╗██████╗ ███████╗\n" +
+                        "██╔════╝██╔════╝██║   ██║██╔════╝████╗  ██║╚══██╔══╝╚██╗ ██╔╝    ╚══██╔══╝██║    ██║██╔═══██╗    ██║  ██║██╔═══██╗██║   ██║██╔══██╗██╔════╝\n" +
+                        "███████╗█████╗  ██║   ██║█████╗  ██╔██╗ ██║   ██║    ╚████╔╝        ██║   ██║ █╗ ██║██║   ██║    ███████║██║   ██║██║   ██║██████╔╝███████╗\n" +
+                        "╚════██║██╔══╝  ╚██╗ ██╔╝██╔══╝  ██║╚██╗██║   ██║     ╚██╔╝         ██║   ██║███╗██║██║   ██║    ██╔══██║██║   ██║██║   ██║██╔══██╗╚════██║\n" +
+                        "███████║███████╗ ╚████╔╝ ███████╗██║ ╚████║   ██║      ██║          ██║   ╚███╔███╔╝╚██████╔╝    ██║  ██║╚██████╔╝╚██████╔╝██║  ██║███████║\n" +
+                        "╚══════╝╚══════╝  ╚═══╝  ╚══════╝╚═╝  ╚═══╝   ╚═╝      ╚═╝          ╚═╝    ╚══╝╚══╝  ╚═════╝     ╚═╝  ╚═╝ ╚═════╝  ╚═════╝ ╚═╝  ╚═╝╚══════╝\n" +
+                        "                                                                                                                                           \n";
+
+
+        gameOutputPanel.appendGameTextArea(titleBanner);
+        sleep(1000);
+        gameOutputPanel.appendGameTextArea(TextColor.WHITE+bundle.getString("title_screen") +TextColor.RESET);
+        while (true) {
+            String intro = scanner.next();
+            for (int i = 0; i < 70; ++i) System.out.println();
+            if (intro.equalsIgnoreCase("play")) {
+                gameOutputPanel.appendGameTextArea(TextColor.WHITE + bundle.getString("start_game"));
+                sleep(1000);
+                break;
+            } else if (intro.equalsIgnoreCase("help")) {
+                gameOutputPanel.appendGameTextArea(TextColor.RED + infoMenu + "\n" + infoBanner + infoMenu);
+                gameOutputPanel.appendGameTextArea(TextColor.WHITE +bundle.getString("help_intro"));
+                gameOutputPanel.appendGameTextArea(TextColor.WHITE +bundle.getString("help_menu"));
+                gameOutputPanel.appendGameTextArea(TextColor.YELLOW+bundle.getString("press_enter2")+TextColor.RESET);
+                String readString = scanner.nextLine();
+                if (scanner.hasNextLine()) {
+                    gameOutputPanel.clearGameTextArea();
+                    titleScreen();
+                    break;
+                }
+            } else if (intro.equalsIgnoreCase("music")) {
+                Music.playerSelectMusic();
+                sleep(700);
+                titleScreen();
+                break;
+            } else if (intro.equalsIgnoreCase("quit")) {
+                gameOutputPanel.appendGameTextArea(TextColor.WHITE+bundle.getString("quit_menu1"));
+                sleep(1000);
+                System.exit(0);
+            } else {
+                gameOutputPanel.appendGameTextArea(TextColor.RED+bundle.getString("invalid_input3"));
+                sleep(1600);
+                titleScreen();
+                break;
+            }
+
+        }
+    }
+
     public void selectDifficulty() {
         while (true) {
             for (int i = 0; i < 70; ++i) System.out.println();
