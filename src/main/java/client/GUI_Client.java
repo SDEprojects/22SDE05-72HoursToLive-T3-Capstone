@@ -15,7 +15,7 @@ public class GUI_Client {
         GameSettings gameSettings = new GameSettings();
 //        Music music = new Music();
 //        music.playMusic();
-        gameSettings.readGameStory(app.getGameOutputPanel());
+        gameSettings.readGameStory(app.getGameOutputPanel(), app.getUserInputPanel());
 //        gameSettings.startGame();
 //        gameSettings.endGame();
 

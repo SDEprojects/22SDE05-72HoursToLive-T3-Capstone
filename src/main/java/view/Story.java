@@ -81,7 +81,9 @@ public class Story {
         }
     }
 
-    public void titleScreen(JPanel_GameOutput gameOutputPanel) throws UnsupportedAudioFileException, LineUnavailableException, IOException {
+    public void titleScreen(JPanel_GameOutput gameOutputPanel, JPanel_UserInput userInputPanel) throws UnsupportedAudioFileException, LineUnavailableException, IOException {
+        gameOutputPanel.clearGameTextArea();
+
         String titleBanner =
 
                 "\n███████╗███████╗██╗   ██╗███████╗███╗   ██╗████████╗██╗   ██╗    ████████╗██╗    ██╗ ██████╗     ██╗  ██╗ ██████╗ ██╗   ██╗██████╗ ███████╗\n" +
@@ -96,41 +98,48 @@ public class Story {
         gameOutputPanel.appendGameTextArea(titleBanner);
         sleep(1000);
         gameOutputPanel.appendGameTextArea(TextColor.WHITE+bundle.getString("title_screen") +TextColor.RESET);
-        while (true) {
-            String intro = scanner.next();
-            gameOutputPanel.clearGameTextArea();
-            if (intro.equalsIgnoreCase("play")) {
-                gameOutputPanel.appendGameTextArea(TextColor.WHITE + bundle.getString("start_game"));
-                sleep(1000);
-                break;
-            } else if (intro.equalsIgnoreCase("help")) {
-                gameOutputPanel.appendGameTextArea(TextColor.RED + infoMenu + "\n" + infoBanner + infoMenu);
-                gameOutputPanel.appendGameTextArea(TextColor.WHITE +bundle.getString("help_intro"));
-                gameOutputPanel.appendGameTextArea(TextColor.WHITE +bundle.getString("help_menu"));
-                gameOutputPanel.appendGameTextArea(TextColor.YELLOW+bundle.getString("press_enter2")+TextColor.RESET);
-                String readString = scanner.nextLine();
-                if (scanner.hasNextLine()) {
-                    gameOutputPanel.clearGameTextArea();
-                    titleScreen();
-                    break;
-                }
-            } else if (intro.equalsIgnoreCase("music")) {
-                Music.playerSelectMusic();
-                sleep(700);
-                titleScreen();
-                break;
-            } else if (intro.equalsIgnoreCase("quit")) {
-                gameOutputPanel.appendGameTextArea(TextColor.WHITE+bundle.getString("quit_menu1"));
-                sleep(1000);
-                System.exit(0);
-            } else {
-                gameOutputPanel.appendGameTextArea(TextColor.RED+bundle.getString("invalid_input3"));
-                sleep(1600);
-                titleScreen();
-                break;
-            }
 
-        }
+        userInputPanel.getUserInputTextField().addActionListener(e -> {
+            gameOutputPanel.clearGameTextArea();
+            String intro = userInputPanel.getUserInputTextField().getText();
+            userInputPanel.getUserInputTextField().setText("");
+
+            try {
+                if (intro.equalsIgnoreCase("play")) {
+                    gameOutputPanel.appendGameTextArea(TextColor.WHITE + bundle.getString("start_game"));
+                    sleep(1000);
+                } else if (intro.equalsIgnoreCase("help")) {
+                    gameOutputPanel.clearGameTextArea();
+                    gameOutputPanel.appendGameTextArea(TextColor.RED + infoMenu + "\n" + infoBanner + infoMenu);
+                    gameOutputPanel.appendGameTextArea(TextColor.WHITE +bundle.getString("help_intro"));
+                    gameOutputPanel.appendGameTextArea(TextColor.WHITE +bundle.getString("help_menu"));
+                    gameOutputPanel.appendGameTextArea(TextColor.YELLOW+bundle.getString("press_enter2")+TextColor.RESET);
+
+//                    userInputPanel.getUserInputTextField().addActionListener(event -> {
+//                        gameOutputPanel.clearGameTextArea();
+//                        try {
+//                            titleScreen(gameOutputPanel, userInputPanel);
+//                        } catch (UnsupportedAudioFileException | LineUnavailableException | IOException ex) {
+//                            throw new RuntimeException(ex);
+//                        }
+//                    });
+                } else if (intro.equalsIgnoreCase("music")) {
+                    Music.playerSelectMusic();
+                    sleep(700);
+                    titleScreen();
+                } else if (intro.equalsIgnoreCase("quit")) {
+                    gameOutputPanel.appendGameTextArea(TextColor.WHITE+bundle.getString("quit_menu1"));
+                    sleep(1000);
+                    System.exit(0);
+                } else {
+                    gameOutputPanel.appendGameTextArea(TextColor.RED+bundle.getString("invalid_input3"));
+                    sleep(1600);
+//                    titleScreen(gameOutputPanel, userInputPanel);
+                }
+            } catch (UnsupportedAudioFileException | IOException | LineUnavailableException ex) {
+                throw new RuntimeException(ex);
+            }
+        });
     }
 
     public void selectDifficulty() {
