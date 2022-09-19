@@ -2,6 +2,8 @@ package main.java.controller;
 
 import main.java.client.Client;
 import main.java.model.RoomMovement;
+import main.java.view.JPanel_GameOutput;
+import main.java.view.JPanel_UserInput;
 import main.java.view.Story;
 import main.java.view.TextColor;
 
@@ -23,6 +25,14 @@ public class GameSettings {
         gameStory.selectDifficulty();
         gameStory.introText();
     }
+
+    public void readGameStory(JPanel_GameOutput gameOutputPanel, JPanel_UserInput userInputPanel) throws UnsupportedAudioFileException, LineUnavailableException, IOException {
+        Story gameStory = new Story();
+        gameStory.titleScreen(gameOutputPanel, userInputPanel);
+//        gameStory.selectDifficulty();
+//        gameStory.introText();
+    }
+
     public void startGame() throws IOException {
         List<String> emptyInventory = new ArrayList<>();
         GameController.wolfKingPrompt = true;

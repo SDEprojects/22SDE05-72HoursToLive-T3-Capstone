@@ -5,6 +5,7 @@ import java.awt.*;
 
 public class JFrame_App extends JFrame {
     private final JPanel_GameOutput gameOutputPanel = new JPanel_GameOutput();
+    private final JPanel_UserInput userInputPanel = new JPanel_UserInput();
     private final JPanel_InformationBar informationBar = new JPanel_InformationBar();
     private final JPanel_Map mapPanel = new JPanel_Map();
 
@@ -18,7 +19,24 @@ public class JFrame_App extends JFrame {
         this.setLocationRelativeTo(null);
 
         this.add(gameOutputPanel, BorderLayout.CENTER);
+        this.add(userInputPanel, BorderLayout.CENTER);
         this.add(mapPanel, BorderLayout.CENTER);
         this.add(informationBar, BorderLayout.CENTER);
+    }
+
+    public JPanel_GameOutput getGameOutputPanel() {
+        return gameOutputPanel;
+    }
+
+    public JPanel_UserInput getUserInputPanel() {
+        return userInputPanel;
+    }
+
+    public JPanel_InformationBar getInformationBar() {
+        return informationBar;
+    }
+
+    public JPanel_Map getMapPanel() {
+        return mapPanel;
     }
 }
