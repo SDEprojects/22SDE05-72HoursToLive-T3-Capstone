@@ -3,6 +3,7 @@ package main.java.view;
 
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
+import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.util.ResourceBundle;
 import java.util.Scanner;
@@ -115,15 +116,6 @@ public class Story {
                     gameOutputPanel.appendGameTextArea(TextColor.WHITE +bundle.getString("help_intro"));
                     gameOutputPanel.appendGameTextArea(TextColor.WHITE +bundle.getString("help_menu"));
                     gameOutputPanel.appendGameTextArea(TextColor.YELLOW+bundle.getString("press_enter2")+TextColor.RESET);
-
-//                    userInputPanel.getUserInputTextField().addActionListener(event -> {
-//                        gameOutputPanel.clearGameTextArea();
-//                        try {
-//                            titleScreen(gameOutputPanel, userInputPanel);
-//                        } catch (UnsupportedAudioFileException | LineUnavailableException | IOException ex) {
-//                            throw new RuntimeException(ex);
-//                        }
-//                    });
                 } else if (intro.equalsIgnoreCase("music")) {
                     Music.playerSelectMusic();
                     sleep(700);
@@ -132,10 +124,14 @@ public class Story {
                     gameOutputPanel.appendGameTextArea(TextColor.WHITE+bundle.getString("quit_menu1"));
                     sleep(1000);
                     System.exit(0);
+                } else if (intro.equalsIgnoreCase("")) {
+                    gameOutputPanel.clearGameTextArea();
+                    gameOutputPanel.appendGameTextArea(titleBanner);
+                    sleep(1000);
+                    gameOutputPanel.appendGameTextArea(TextColor.WHITE+bundle.getString("title_screen") +TextColor.RESET);
                 } else {
                     gameOutputPanel.appendGameTextArea(TextColor.RED+bundle.getString("invalid_input3"));
                     sleep(1600);
-//                    titleScreen(gameOutputPanel, userInputPanel);
                 }
             } catch (UnsupportedAudioFileException | IOException | LineUnavailableException ex) {
                 throw new RuntimeException(ex);
