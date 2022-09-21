@@ -5,11 +5,11 @@ import java.awt.*;
 
 public class JPanel_Map extends JPanel {
     public JPanel_Map() {
-//        this.setLayout(new GridLayout(2, 39,0,0));
+        this.setLayout(new FlowLayout(FlowLayout.CENTER));
 
         this.setBackground(Color.black);
         this.setBorder(BorderFactory.createLineBorder(Color.black));
-        this.setBounds(0,750,1250,225);
+        this.setBounds(0,325,1300,225);
         JLabel mapLabel = new JLabel("Map");
         mapLabel.setForeground(Color.white);
 //        this.add(mapLabel);

@@ -3,6 +3,7 @@ package main.java.view;
 
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
+import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.util.ResourceBundle;
 import java.util.Scanner;
@@ -82,6 +83,63 @@ public class Story {
         }
     }
 
+    public void titleScreen(JPanel_GameOutput gameOutputPanel, JPanel_UserInput userInputPanel) throws UnsupportedAudioFileException, LineUnavailableException, IOException {
+        gameOutputPanel.clearGameTextArea();
+
+        String titleBanner =
+
+                "\n███████╗███████╗██╗   ██╗███████╗███╗   ██╗████████╗██╗   ██╗    ████████╗██╗    ██╗ ██████╗     ██╗  ██╗ ██████╗ ██╗   ██╗██████╗ ███████╗\n" +
+                        "██╔════╝██╔════╝██║   ██║██╔════╝████╗  ██║╚══██╔══╝╚██╗ ██╔╝    ╚══██╔══╝██║    ██║██╔═══██╗    ██║  ██║██╔═══██╗██║   ██║██╔══██╗██╔════╝\n" +
+                        "███████╗█████╗  ██║   ██║█████╗  ██╔██╗ ██║   ██║    ╚████╔╝        ██║   ██║ █╗ ██║██║   ██║    ███████║██║   ██║██║   ██║██████╔╝███████╗\n" +
+                        "╚════██║██╔══╝  ╚██╗ ██╔╝██╔══╝  ██║╚██╗██║   ██║     ╚██╔╝         ██║   ██║███╗██║██║   ██║    ██╔══██║██║   ██║██║   ██║██╔══██╗╚════██║\n" +
+                        "███████║███████╗ ╚████╔╝ ███████╗██║ ╚████║   ██║      ██║          ██║   ╚███╔███╔╝╚██████╔╝    ██║  ██║╚██████╔╝╚██████╔╝██║  ██║███████║\n" +
+                        "╚══════╝╚══════╝  ╚═══╝  ╚══════╝╚═╝  ╚═══╝   ╚═╝      ╚═╝          ╚═╝    ╚══╝╚══╝  ╚═════╝     ╚═╝  ╚═╝ ╚═════╝  ╚═════╝ ╚═╝  ╚═╝╚══════╝\n" +
+                        "                                                                                                                                           \n";
+
+
+        gameOutputPanel.appendGameTextArea(titleBanner);
+        sleep(1000);
+        gameOutputPanel.appendGameTextArea(TextColor.WHITE+bundle.getString("title_screen") +TextColor.RESET);
+
+        JPanel_UserInput.getUserInputTextField().addActionListener(e -> {
+            gameOutputPanel.clearGameTextArea();
+            String intro = JPanel_UserInput.getUserInputTextField().getText();
+            JPanel_UserInput.getUserInputTextField().setText("");
+
+            try {
+                if (intro.equalsIgnoreCase("play")) {
+                    gameOutputPanel.appendGameTextArea(TextColor.WHITE + bundle.getString("start_game"));
+                    sleep(1000);
+
+                } else if (intro.equalsIgnoreCase("help")) {
+                    gameOutputPanel.clearGameTextArea();
+                    gameOutputPanel.appendGameTextArea(TextColor.RED + infoMenu + "\n" + infoBanner + infoMenu);
+                    gameOutputPanel.appendGameTextArea(TextColor.WHITE +bundle.getString("help_intro"));
+                    gameOutputPanel.appendGameTextArea(TextColor.WHITE +bundle.getString("help_menu"));
+                    gameOutputPanel.appendGameTextArea(TextColor.YELLOW+bundle.getString("press_enter2")+TextColor.RESET);
+                } else if (intro.equalsIgnoreCase("music")) {
+                    Music.playerSelectMusic();
+                    sleep(700);
+                    titleScreen();
+                } else if (intro.equalsIgnoreCase("quit")) {
+                    gameOutputPanel.appendGameTextArea(TextColor.WHITE+bundle.getString("quit_menu1"));
+                    sleep(1000);
+                    System.exit(0);
+                } else if (intro.equalsIgnoreCase("")) {
+                    gameOutputPanel.clearGameTextArea();
+                    gameOutputPanel.appendGameTextArea(titleBanner);
+                    sleep(1000);
+                    gameOutputPanel.appendGameTextArea(TextColor.WHITE+bundle.getString("title_screen") +TextColor.RESET);
+                } else {
+                    gameOutputPanel.appendGameTextArea(TextColor.RED+bundle.getString("invalid_input3"));
+                    sleep(1600);
+                }
+            } catch (UnsupportedAudioFileException | IOException | LineUnavailableException ex) {
+                throw new RuntimeException(ex);
+            }
+        });
+    }
+
     public void selectDifficulty() {
         while (true) {
             for (int i = 0; i < 70; ++i) System.out.println();
@@ -116,6 +174,39 @@ public class Story {
             break;
         }
 
+    }
+
+    public void selectDifficulty(JPanel_GameOutput gameOutputPanel, JPanel_UserInput userInputPanel) {
+        gameOutputPanel.clearGameTextArea();
+        gameOutputPanel.appendGameTextArea(TextColor.WHITE + "Select a difficulty: " + TextColor.GREEN + "Easy, "
+                + TextColor.RESET + TextColor.BLUE + "Medium, " + TextColor.RESET + TextColor.YELLOW + "Hard, " + TextColor.RED + "Impossible." + TextColor.RESET);
+
+        JPanel_UserInput.getUserInputTextField().addActionListener(e -> {
+            gameOutputPanel.clearGameTextArea();
+            String intro = JPanel_UserInput.getUserInputTextField().getText();
+            JPanel_UserInput.getUserInputTextField().setText("");
+
+            if (intro.equalsIgnoreCase("easy")) {
+                gameOutputPanel.appendGameTextArea(TextColor.GREEN + bundle.getString("level_easy"));
+                difficulty = 0;
+                sleep(1000);
+            } else if (intro.equalsIgnoreCase("medium")) {
+                gameOutputPanel.appendGameTextArea(TextColor.BLUE + bundle.getString("level_medium"));
+                sleep(1000);
+                difficulty = 4;
+            } else if (intro.equalsIgnoreCase("hard")) {
+                gameOutputPanel.appendGameTextArea(TextColor.YELLOW + bundle.getString("level_hard"));
+                sleep(1000);
+                difficulty = 7;
+            } else if (intro.equalsIgnoreCase("impossible")) {
+                gameOutputPanel.appendGameTextArea(TextColor.RED + bundle.getString("level_impossible"));
+                sleep(1000);
+                difficulty = 11;
+            } else {
+                gameOutputPanel.appendGameTextArea(TextColor.RED + bundle.getString("invalid_input4"));
+                sleep(1500);
+            }
+        });
     }
 
     //Same as "Map" I don't remember seeing this during game play
@@ -168,6 +259,45 @@ public class Story {
                 sleep(1500);
             }
         }
+    }
+
+    public void introText(JPanel_GameOutput gameOutputPanel, JPanel_UserInput userInputPanel) {
+        gameOutputPanel.clearGameTextArea();
+
+        String storyBanner =
+                "███████╗████████╗ ██████╗ ██████╗ ██╗   ██╗██╗     ██╗███╗   ██╗███████╗\n" +
+                        "██╔════╝╚══██╔══╝██╔═══██╗██╔══██╗╚██╗ ██╔╝██║     ██║████╗  ██║██╔════╝\n" +
+                        "███████╗   ██║   ██║   ██║██████╔╝ ╚████╔╝ ██║     ██║██╔██╗ ██║█████╗  \n" +
+                        "╚════██║   ██║   ██║   ██║██╔══██╗  ╚██╔╝  ██║     ██║██║╚██╗██║██╔══╝  \n" +
+                        "███████║   ██║   ╚██████╔╝██║  ██║   ██║   ███████╗██║██║ ╚████║███████╗\n" +
+                        "╚══════╝   ╚═╝    ╚═════╝ ╚═╝  ╚═╝   ╚═╝   ╚══════╝╚═╝╚═╝  ╚═══╝╚══════╝\n" +
+                        "                                                                        \n";
+
+        String menu = "========================================================================\n";
+        gameOutputPanel.appendGameTextArea(TextColor.RED + "\n" + menu + "\n" + storyBanner + menu);
+        gameOutputPanel.appendGameTextArea(TextColor.WHITE + bundle.getString("intro_text1") + TextColor.RESET);
+
+        JPanel_UserInput.getUserInputTextField().addActionListener(e -> {
+            gameOutputPanel.clearGameTextArea();
+            String intro = JPanel_UserInput.getUserInputTextField().getText();
+            JPanel_UserInput.getUserInputTextField().setText("");
+            if (intro.equalsIgnoreCase("skip")) {
+                gameOutputPanel.appendGameTextArea(TextColor.WHITE + bundle.getString("skip_intro"));
+                sleep(1425);
+                gameOutputPanel.appendGameTextArea(TextColor.WHITE + bundle.getString("start_game"));
+                sleep(1425);
+            } else if (intro.equalsIgnoreCase("read")) {
+                gameOutputPanel.appendGameTextArea(TextColor.YELLOW + bundle.getString("press_enter"));
+                sleep(1000);
+                gameOutputPanel.appendGameTextArea(TextColor.WHITE + bundle.getString("storyline"));
+                sleep(100);
+                gameOutputPanel.appendGameTextArea(TextColor.WHITE + bundle.getString("start_game"));
+                sleep(425);
+            } else {
+                gameOutputPanel.appendGameTextArea(TextColor.RED + bundle.getString("invalid_input2"));
+                sleep(1500);
+            }
+        });
     }
 
     public void runThread() {

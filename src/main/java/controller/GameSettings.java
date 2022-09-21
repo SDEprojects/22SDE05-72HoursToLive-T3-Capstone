@@ -2,6 +2,8 @@ package main.java.controller;
 
 import main.java.client.Client;
 import main.java.model.RoomMovement;
+import main.java.view.JPanel_GameOutput;
+import main.java.view.JPanel_UserInput;
 import main.java.view.Story;
 import main.java.view.TextColor;
 
@@ -15,14 +17,28 @@ import java.util.Scanner;
 
 public class GameSettings {
     public static String roomName;
+
+    Story gameStory = new Story();
     private static final ResourceBundle bundle = ResourceBundle.getBundle("main.resources.strings");
 
     public void readGameStory() throws UnsupportedAudioFileException, LineUnavailableException, IOException {
-        Story gameStory = new Story();
-        gameStory.titleScreen();
-        gameStory.selectDifficulty();
-        gameStory.introText();
+        Story gameStoryConsole = new Story();
+        gameStoryConsole.titleScreen();
+        gameStoryConsole.selectDifficulty();
+        gameStoryConsole.introText();
     }
+
+    public void readGameStory(JPanel_GameOutput gameOutputPanel, JPanel_UserInput userInputPanel) throws UnsupportedAudioFileException, LineUnavailableException, IOException {
+        gameStory.titleScreen(gameOutputPanel, userInputPanel);
+        //insert action listener for ENTER. then send to override.
+//        gameStory.selectDifficulty(gameOutputPanel, userInputPanel);
+//        gameStory.introText(gameOutputPanel, userInputPanel);
+    }
+
+    public void setupSelectDifficulty(JPanel_GameOutput gameOutputPanel, JPanel_UserInput userInputPanel) {
+        gameStory.selectDifficulty(gameOutputPanel, userInputPanel);
+    }
+
     public void startGame() throws IOException {
         List<String> emptyInventory = new ArrayList<>();
         GameController.wolfKingPrompt = true;
