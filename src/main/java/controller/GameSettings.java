@@ -17,20 +17,26 @@ import java.util.Scanner;
 
 public class GameSettings {
     public static String roomName;
+
+    Story gameStory = new Story();
     private static final ResourceBundle bundle = ResourceBundle.getBundle("main.resources.strings");
 
     public void readGameStory() throws UnsupportedAudioFileException, LineUnavailableException, IOException {
-        Story gameStory = new Story();
-        gameStory.titleScreen();
-        gameStory.selectDifficulty();
-        gameStory.introText();
+        Story gameStoryConsole = new Story();
+        gameStoryConsole.titleScreen();
+        gameStoryConsole.selectDifficulty();
+        gameStoryConsole.introText();
     }
 
     public void readGameStory(JPanel_GameOutput gameOutputPanel, JPanel_UserInput userInputPanel) throws UnsupportedAudioFileException, LineUnavailableException, IOException {
-        Story gameStory = new Story();
         gameStory.titleScreen(gameOutputPanel, userInputPanel);
-//        gameStory.selectDifficulty();
-//        gameStory.introText();
+        //insert action listener for ENTER. then send to override.
+//        gameStory.selectDifficulty(gameOutputPanel, userInputPanel);
+//        gameStory.introText(gameOutputPanel, userInputPanel);
+    }
+
+    public void setupSelectDifficulty(JPanel_GameOutput gameOutputPanel, JPanel_UserInput userInputPanel) {
+        gameStory.selectDifficulty(gameOutputPanel, userInputPanel);
     }
 
     public void startGame() throws IOException {
