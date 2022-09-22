@@ -6,12 +6,13 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.util.ResourceBundle;
 
 public class GUIGameController {
 
     static JFrame_App app = new JFrame_App();
-    private static final JPanel_GameOutput gameOutputPanel = new JPanel_GameOutput();
+    public static final JPanel_GameOutput gameOutputPanel = new JPanel_GameOutput();
     private static final JPanel_UserInput userInputPanel = new JPanel_UserInput();
     private static final JPanel_InformationBar informationBar = new JPanel_InformationBar();
     private static final JPanel_Map mapPanel = new JPanel_Map();
@@ -29,6 +30,8 @@ public class GUIGameController {
     static JButton startBtn = new JButton();
 
     public static int difficulty = 0;
+
+    public static GameSettings gameSettings = new GameSettings();
     private static final ResourceBundle bundle = ResourceBundle.getBundle("main.resources.strings");
 
     public GUIGameController() {
@@ -138,16 +141,42 @@ public class GUIGameController {
         app.pack();
     }
 
-    private static void startGamePlay() {
+    private static void startGamePlay() throws IOException {
         setUpGameScreen();
+
+        gameSettings.startGuiGame(gameOutputPanel);
+        gameOutputPanel.appendGameTextArea(bundle.getString("input_scanner_ask") + "\n");
     }
 
-    private static void setUpGameScreen() {
+    private static void setUpGameScreen() throws IOException {
         gameOutputPanel.clearGameTextArea();
-        gameOutputPanel.appendGameTextArea("YOU'RE STARTING THE GAME");
 
         app.add(informationBar);
         app.add(mapPanel);
+        app.add(userInputPanel);
+        app.pack();
+    }
+
+    public static void handleEnterKey(String userInput) throws IOException {
+        //gameOutputPanel.appendGameTextArea("\n" + userInput);
+        GameController gameController = new GameController();
+        gameOutputPanel.clearGameTextArea();
+        gameController.guiUserChoice(gameOutputPanel, userInput);
+    }
+
+    private static void continueGameCheck() {                               // @ end of each if, call an end game function!!!!!
+        if (GameController.player.getHealth() <= 0) {
+                gameOutputPanel.appendGameTextArea(bundle.getString("player_dead1"));
+
+            }
+            else if (GameController.timer== 24){
+                gameOutputPanel.appendGameTextArea(bundle.getString("time_out1"));
+                gameOutputPanel.appendGameTextArea(bundle.getString("time_out2"));
+            }
+            else if (GameController.player.getInventory().contains("Trophy")) {
+                gameOutputPanel.appendGameTextArea(bundle.getString("trophy_response1"));
+                gameOutputPanel.appendGameTextArea(bundle.getString("trophy_response2"));
+            }
     }
 
     // *************  ACTION LISTENER CLASSES  *****************
@@ -224,7 +253,11 @@ public class GUIGameController {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            startGamePlay();
+            try {
+                startGamePlay();
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
 
         }
     }
