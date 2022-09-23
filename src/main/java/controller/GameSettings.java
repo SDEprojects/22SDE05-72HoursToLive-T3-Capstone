@@ -76,6 +76,22 @@ public class GameSettings {
             }
         }
     }
+
+    public void startGuiGame(JPanel_GameOutput gameOutputPanel) throws IOException {
+        List<String> emptyInventory = new ArrayList<>();
+        GameController.wolfKingPrompt = true;
+        GameController.player.setHealth(100);
+        GameController.player.setAttackPower(10);
+        GameController.player.setArmorRating(10);
+        GameController.timer = 0;
+        GameController.player.setInventory(emptyInventory);
+
+        RoomMovement movement = new RoomMovement();
+        movement.guiFirstRoom(gameOutputPanel);
+//        GameController gameController = new GameController();
+//        gameController.guiUserChoice(gameOutputPanel);
+    }
+
     public void endGame() {
         System.out.println(TextColor.WHITE+bundle.getString("game_over1"));
         sleep(1000);
