@@ -14,9 +14,12 @@ public class JPanel_UserInput extends JPanel {
     private static JTextField userInputTextField = new JTextField(38);
 
     public JPanel_UserInput() {
-        this.setBackground(Color.gray);
+//        this.setBackground(Color.gray);
         this.setBorder(BorderFactory.createLineBorder(Color.black));
-        this.setBounds(510,325,500,225);
+//        this.setBounds(510,325,500,225);
+        this.setBorder(BorderFactory.createEmptyBorder(0,0,20,-100));
+        this.setBounds(500,325,500,225);
+
 
         userInputTextField.setFont(new Font("", Font.PLAIN, 16));
         userInputTextField.setBackground(new Color(5,8,6));
