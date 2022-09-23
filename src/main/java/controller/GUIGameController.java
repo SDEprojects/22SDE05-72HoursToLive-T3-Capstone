@@ -32,6 +32,7 @@ public class GUIGameController {
     public static int difficulty = 0;
 
     public static GameSettings gameSettings = new GameSettings();
+    public static GameController gameController = new GameController();
     private static final ResourceBundle bundle = ResourceBundle.getBundle("main.resources.strings");
 
     public GUIGameController() {
@@ -159,7 +160,7 @@ public class GUIGameController {
 
     public static void handleEnterKey(String userInput) throws IOException {
         //gameOutputPanel.appendGameTextArea("\n" + userInput);
-        GameController gameController = new GameController();
+//        GameController gameController = new GameController();
         gameOutputPanel.clearGameTextArea();
         gameController.guiUserChoice(gameOutputPanel, userInput);
     }
