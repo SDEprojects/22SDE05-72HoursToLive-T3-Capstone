@@ -312,13 +312,13 @@ public class GameController {
                             for (String item : w1.getInventory()) {
                                 String[] werewolfKingDead = {bundle.getString("werewolfKing_dead1"), bundle.getString("werewolfKing_dead2"), bundle.getString("werewolfKing_dead3")};
                                 String werewolfKing_deadResponse = werewolfKingDead[ran.nextInt(werewolfKingDead.length)];
-                                System.out.println(werewolfKing_deadResponse);
+                                gameOutputPanel.appendGameTextArea(werewolfKing_deadResponse);
                                 room.getItems().add(item);
                             }
                         } else {
                             String[] werewolfDead = {bundle.getString("werewolf_dead1"), bundle.getString("werewolf_dead2"), bundle.getString("werewolf_dead3")};
                             String werewolf_deadResponse = werewolfDead[ran.nextInt(werewolfDead.length)];
-                            System.out.println(werewolf_deadResponse);
+                            gameOutputPanel.appendGameTextArea(werewolf_deadResponse);
 
                         }
                     }
