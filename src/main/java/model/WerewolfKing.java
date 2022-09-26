@@ -4,6 +4,8 @@ import java.util.LinkedList;
 import java.util.Random;
 import java.util.ResourceBundle;
 
+import static main.java.controller.GUIGameController.gameOutputPanel;
+
 public class WerewolfKing extends Werewolf{
 
     // fields
@@ -35,7 +37,7 @@ public class WerewolfKing extends Werewolf{
         int val = random.nextInt(5) + 1;
 
         if (getHealth() < 70 && val == 1){
-            System.out.println(bundle.getString("werewolfKing_deflects1"));
+            gameOutputPanel.appendGameTextArea(bundle.getString("werewolfKing_deflects1"));
             return;
         }
         super.gotAttacked(enemy);
@@ -44,7 +46,7 @@ public class WerewolfKing extends Werewolf{
     // method outlines a special attack by werewolf king to player. destroys aka clears player inventory.
     public void specialAttack(Character enemy){
         if(enemy.getInventory().size() > 0) {
-            System.out.println(bundle.getString("werewolfKing_destroys1"));
+            gameOutputPanel.appendGameTextArea(bundle.getString("werewolfKing_destroys1"));
             enemy.getInventory().clear();
             sleep(1500);
         }

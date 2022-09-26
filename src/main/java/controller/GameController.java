@@ -10,10 +10,11 @@ import java.util.*;
 
 public class GameController {
     public static Soldier player = new Soldier();
+    public static WerewolfKing wolfKing = new WerewolfKing();
     public static int timer = 0;
     public static boolean moonTrigger = true;
-    private String currentRoom = RoomMovement.currentRoom;
-    private HashMap<String, List<Werewolf>> monsterMap = getMonsterMap(currentRoom);
+//    private String currentRoom = RoomMovement.currentRoom;
+//    private HashMap<String, List<Werewolf>> monsterMap = getMonsterMap(currentRoom);
     private static final ResourceBundle bundle = ResourceBundle.getBundle("main.resources.strings");
     private static boolean werewolfCanAttack = true;
     public static boolean wolfKingPrompt = true;
@@ -21,15 +22,17 @@ public class GameController {
 
     public void userChoice() throws IOException {
         while (player.getHealth() > 0 && timer < 24) {
+            String currentRoom;
             try {
                 Random ran = new Random();
 
                 String[] werewolfAttack = {TextColor.RED + bundle.getString("werewolf_attack1"), bundle.getString("werewolf_attack2"), bundle.getString("werewolf_attack3") + TextColor.RESET};
                 String werewolfAttackResponse = werewolfAttack[ran.nextInt(werewolfAttack.length)];
 
-                checkFullMoon();
-
                 currentRoom = RoomMovement.currentRoom;
+                HashMap<String, List<Werewolf>> monsterMap = getMonsterMap(currentRoom);
+                checkFullMoon(monsterMap);
+
                 if (!monsterMap.get(currentRoom).isEmpty() && werewolfCanAttack) {
                     Werewolf wolf = monsterMap.get(currentRoom).get(0);
                     wolf.attack(player);
@@ -212,15 +215,17 @@ public class GameController {
     public void guiUserChoice(JPanel_GameOutput gameOutputPanel, String userInput) throws IOException {
         //gameOutputPanel.appendGameTextArea("\n" + userInput + "FROM THE GAME CONTROLLER");
 
+        String currentRoom;
         try {
             Random ran = new Random();
 
             String[] werewolfAttack = {bundle.getString("werewolf_attack1"), bundle.getString("werewolf_attack2"), bundle.getString("werewolf_attack3")};
             String werewolfAttackResponse = werewolfAttack[ran.nextInt(werewolfAttack.length)];
 
-            checkFullMoon();
-
             currentRoom = RoomMovement.currentRoom;
+            HashMap<String, List<Werewolf>> monsterMap = getMonsterMap(currentRoom);
+            checkFullMoon(monsterMap);
+
             if (!monsterMap.get(currentRoom).isEmpty() && werewolfCanAttack) {
                 Werewolf wolf = monsterMap.get(currentRoom).get(0);
                 wolf.attack(player);
@@ -376,9 +381,9 @@ public class GameController {
         HashMap<String, Room> allMap = RoomMovement.getAllRooms();
         HashMap<String, List<Werewolf>> monsterMap = new HashMap<>();
         for (String key : allMap.keySet()) {
-            monsterMap.put(key, new LinkedList<Werewolf>());
+            monsterMap.put(key, new LinkedList<>());
             if (key.equals("Throne Room")) {
-                monsterMap.get(key).add(new WerewolfKing());
+                monsterMap.get(key).add(wolfKing);
             } else if (random.nextBoolean() && !key.equals(room)) {
                 monsterMap.get(key).add(new Werewolf());
             }
@@ -386,7 +391,7 @@ public class GameController {
         return monsterMap;
     }
 
-    public void checkFullMoon() {
+    public void checkFullMoon(HashMap<String, List<Werewolf>> monsterMap) {
         if (timer > 0 && (timer % 7 == 0 || timer % 8 == 0)) {
             monsterMap.values().forEach(monsters -> {
                 monsters.forEach(monster -> {
