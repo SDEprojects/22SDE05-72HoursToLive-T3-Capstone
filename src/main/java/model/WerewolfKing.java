@@ -1,5 +1,7 @@
 package main.java.model;
 
+import main.java.controller.GameController;
+
 import java.util.LinkedList;
 import java.util.Random;
 import java.util.ResourceBundle;
@@ -24,11 +26,12 @@ public class WerewolfKing extends Werewolf{
     // method controls werewolf king attacks on player. contains randomizer for special attacks.
     @Override
     public void attack(Character enemy){
-        super.attack(enemy);
-        if (random.nextBoolean()){
-            specialAttack(enemy);
+        if (GameController.wolfKing.getHealth() != 0) {
+            super.attack(enemy);
+            if (random.nextBoolean()){
+                specialAttack(enemy);
+            }
         }
-
     }
 
     // method controls attacks taken by werewolf king from player. includes random chance for attack deflection.

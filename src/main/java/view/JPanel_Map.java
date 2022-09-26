@@ -15,13 +15,13 @@ public class JPanel_Map extends JPanel {
 //        this.add(mapLabel);
 
         String testMap =
-            "                                  Bed Chamber I\n" +
+            "                                         Bed Chamber I\n" +
                     "=============== ================== ============\n" +
                     "      Bed Chamber II                Hallway                Bed Chamber III\n" +
                     "=============== ================== ============\n" +
                     "       Throne Room                 Great Hall                   Armory\n" +
                     "=============== ================== ============\n" +
-                    "        * YOU *                    Dining Room                 Kitchen\n" +
+                    "        Garden                    Dining Room                 Kitchen\n" +
                     "=============== ================== ============\n" +
                     "        Parapet                     Ballroom                    Pantry\n" +
                     "=============== ================== ============\n" +

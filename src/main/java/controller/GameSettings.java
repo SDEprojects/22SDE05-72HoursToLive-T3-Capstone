@@ -2,10 +2,7 @@ package main.java.controller;
 
 import main.java.client.Client;
 import main.java.model.RoomMovement;
-import main.java.view.JPanel_GameOutput;
-import main.java.view.JPanel_UserInput;
-import main.java.view.Story;
-import main.java.view.TextColor;
+import main.java.view.*;
 
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
@@ -88,6 +85,7 @@ public class GameSettings {
 
         RoomMovement movement = new RoomMovement();
         movement.guiFirstRoom(gameOutputPanel);
+        View.guiMenu();
 //        GameController gameController = new GameController();
 //        gameController.guiUserChoice(gameOutputPanel);
     }
