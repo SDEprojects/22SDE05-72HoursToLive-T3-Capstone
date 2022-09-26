@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 public class JPanel_InformationBar extends JPanel{
 
     public static JTextArea modeText = new JTextArea("Easy");
-    public static JTextArea hoursRemainingText = new JTextArea(String.valueOf(GameController.timer));
+    public static JTextArea hoursRemainingText = new JTextArea(String.valueOf(72 - (GameController.timer * 3)));
     public static JTextArea healthText = new JTextArea(String.valueOf(GameController.player.getHealth()));
     public static JTextArea armorText = new JTextArea(String.valueOf(GameController.player.getArmorRating()));
     public static JTextArea attackText = new JTextArea(String.valueOf(GameController.player.getAttackPower()));

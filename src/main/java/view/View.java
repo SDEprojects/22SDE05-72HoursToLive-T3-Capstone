@@ -56,7 +56,7 @@ public class View {
         }
 
         JPanel_InformationBar.modeText.setText("Easy");
-        JPanel_InformationBar.hoursRemainingText.setText(String.valueOf(GameController.timer));
+        JPanel_InformationBar.hoursRemainingText.setText(String.valueOf(72 - (GameController.timer * 3)));
         JPanel_InformationBar.healthText.setText(String.valueOf(GameController.player.getHealth()));
         JPanel_InformationBar.armorText.setText(String.valueOf(GameController.player.getArmorRating()));
         JPanel_InformationBar.attackText.setText(String.valueOf(GameController.player.getAttackPower()));
