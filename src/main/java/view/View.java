@@ -47,10 +47,11 @@ public class View {
     public static void guiMenu() {
         if (GameController.timer % 7 == 0 && GameController.timer > 0 && GameController.moonTrigger) {
             gameOutputPanel.appendGameTextArea("AHHHHHHHH-WOOOOOOOOO!!\n\n");
-            gameOutputPanel.appendGameTextArea(Art.wolfHowl);
+            //gameOutputPanel.appendGameTextArea(Art.wolfHowl);
             gameOutputPanel.appendGameTextArea("\nOh no! You look into the sky and see that tonight");
             gameOutputPanel.appendGameTextArea("...is a....\n\n");
-            gameOutputPanel.appendGameTextArea(Art.fullMoon);
+            gameOutputPanel.appendGameTextArea("FULL MOON!\n\n");
+            //gameOutputPanel.appendGameTextArea(Art.fullMoon);
             gameOutputPanel.appendGameTextArea("The werewolves are more powerful tonight! Be careful!\n");
             GameController.moonTrigger = false;
         }

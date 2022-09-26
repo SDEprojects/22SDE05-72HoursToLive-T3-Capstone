@@ -8,6 +8,9 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 import java.io.IOException;
 import java.util.*;
 
+import static main.java.controller.GUIGameController.gameController;
+import static main.java.controller.GUIGameController.gameOutputPanel;
+
 public class GameController {
     public static Soldier player = new Soldier();
     public static WerewolfKing wolfKing = new WerewolfKing();
@@ -367,12 +370,33 @@ public class GameController {
                     werewolfCanAttack = false;
                     break;
             }
+            continueGameCheck();
             View.guiMenu();
 
         } catch (NullPointerException e) {
             throw new NullPointerException();
         } catch (UnsupportedAudioFileException | LineUnavailableException e) {
             throw new RuntimeException(e);
+        }
+    }
+
+    public static void continueGameCheck() {
+        if (GameController.player.getHealth() <= 0) {
+            gameOutputPanel.clearGameTextArea();
+            gameOutputPanel.appendGameTextArea(bundle.getString("player_dead1") + "\n");
+            GUIGameController.endGuiGame();
+        }
+        else if (GameController.timer== 24){
+            gameOutputPanel.clearGameTextArea();
+            gameOutputPanel.appendGameTextArea(bundle.getString("time_out1") + "\n");
+            gameOutputPanel.appendGameTextArea(bundle.getString("time_out2") + "\n");
+            GUIGameController.endGuiGame();
+        }
+        else if (GameController.player.getInventory().contains("Trophy")) {
+            gameOutputPanel.clearGameTextArea();
+            gameOutputPanel.appendGameTextArea(bundle.getString("trophy_response1") + "\n");
+            gameOutputPanel.appendGameTextArea(bundle.getString("trophy_response2") + "\n");
+            GUIGameController.endGuiGame();
         }
     }
 
