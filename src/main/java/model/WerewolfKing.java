@@ -1,8 +1,12 @@
 package main.java.model;
 
+import main.java.controller.GameController;
+
 import java.util.LinkedList;
 import java.util.Random;
 import java.util.ResourceBundle;
+
+import static main.java.controller.GUIGameController.gameOutputPanel;
 
 public class WerewolfKing extends Werewolf{
 
@@ -22,11 +26,12 @@ public class WerewolfKing extends Werewolf{
     // method controls werewolf king attacks on player. contains randomizer for special attacks.
     @Override
     public void attack(Character enemy){
-        super.attack(enemy);
-        if (random.nextBoolean()){
-            specialAttack(enemy);
+        if (GameController.wolfKing.getHealth() != 0) {
+            super.attack(enemy);
+            if (random.nextBoolean()){
+                specialAttack(enemy);
+            }
         }
-
     }
 
     // method controls attacks taken by werewolf king from player. includes random chance for attack deflection.
@@ -35,7 +40,7 @@ public class WerewolfKing extends Werewolf{
         int val = random.nextInt(5) + 1;
 
         if (getHealth() < 70 && val == 1){
-            System.out.println(bundle.getString("werewolfKing_deflects1"));
+            gameOutputPanel.appendGameTextArea(bundle.getString("werewolfKing_deflects1"));
             return;
         }
         super.gotAttacked(enemy);
@@ -44,7 +49,7 @@ public class WerewolfKing extends Werewolf{
     // method outlines a special attack by werewolf king to player. destroys aka clears player inventory.
     public void specialAttack(Character enemy){
         if(enemy.getInventory().size() > 0) {
-            System.out.println(bundle.getString("werewolfKing_destroys1"));
+            gameOutputPanel.appendGameTextArea(bundle.getString("werewolfKing_destroys1"));
             enemy.getInventory().clear();
             sleep(1500);
         }

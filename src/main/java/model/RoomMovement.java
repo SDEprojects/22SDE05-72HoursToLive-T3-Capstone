@@ -2,6 +2,7 @@ package main.java.model;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import main.java.view.JPanel_GameOutput;
 import main.java.view.TextColor;
 
 import java.io.IOException;
@@ -83,6 +84,20 @@ public class RoomMovement {
         sleep(550);
     }
 
+    public void guiFirstRoom(JPanel_GameOutput gameOutputPanel){
+        do {
+            currentRoom = allRooms.keySet().toArray()[(int) (Math.random() * allRooms.size())] + "";
+        } while (currentRoom.equalsIgnoreCase("Throne Room"));
+
+        Room room = allRooms.get(currentRoom);
+        roomSwitcher = room;
+        gameOutputPanel.appendGameTextArea(bundle.getString("firstRoom_text1"));
+        gameOutputPanel.appendGameTextArea(bundle.getString("firstRoom_text2"));
+        gameOutputPanel.appendGameTextArea(bundle.getString("firstRoom_text3"));
+        gameOutputPanel.appendGameTextArea(bundle.getString("firstRoom_text4") + room.getName()+ ".\n" );
+        gameOutputPanel.appendGameTextArea("\n" + room.getDescription() + "\n");
+    }
+
     // method allows player to transition rooms
     public static void switchRooms(String location) throws IOException {
         currentRoom = roomSwitcher.getConnectedRooms().get(location);
@@ -111,5 +126,9 @@ public class RoomMovement {
             sleep(speed);
         }
         return text;
+    }
+
+    public static String getCurrentRoom() {
+        return currentRoom;
     }
 }

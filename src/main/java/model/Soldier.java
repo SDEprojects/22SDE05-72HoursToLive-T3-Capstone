@@ -5,6 +5,8 @@ import main.java.view.TextColor;
 
 import java.util.*;
 
+import static main.java.controller.GUIGameController.gameOutputPanel;
+
 public class Soldier extends Character{
 
     // fields
@@ -36,6 +38,12 @@ public class Soldier extends Character{
         sleep(750);
     }
 
+    public void guiAttack(Character enemy){
+        gameOutputPanel.appendGameTextArea("You strike the werewolf with all your might!\n");
+        super.attack(enemy);
+        gameOutputPanel.appendGameTextArea("The werewolf's health is: " + enemy.getHealth() + "!\n");
+    }
+
     // getting attacked method for soldier class - override from character class
     @Override
     public void gotAttacked(Character enemy){
@@ -54,6 +62,23 @@ public class Soldier extends Character{
         int high = 6;
         setHealth(getHealth() - (((attack * 10) / getArmorRating()) - (r.nextInt(high-low) + low)+4) - Story.difficulty);
     }
+
+//    public void guiGotAttacked(Character enemy){
+//        if (!visible){
+//            gameOutputPanel.appendGameTextArea(getName() + " has invisible cloak");
+//            return;
+//        }
+//        int attack = enemy.getAttackPower();
+//        if (armor == true){
+//            armor = false;
+//            gameOutputPanel.appendGameTextArea(getName() + "was protect by armor");
+//            return;
+//        }
+//        Random r = new Random();
+//        int low = 1;
+//        int high = 6;
+//        setHealth(getHealth() - (((attack * 10) / getArmorRating()) - (r.nextInt(high-low) + low)+4) - Story.difficulty);
+//    }
 
     // method allows player to pick up an item and add it to inventory
     public void pickup(String item){
@@ -117,6 +142,64 @@ public class Soldier extends Character{
             System.out.println("Item does nothing!");
         }
     }
+
+    public void guiUseItems(String item) {
+        ArrayList<String> heavyArmor = new ArrayList<>(Arrays.asList("breastplate", "helmet", "shield", "greaves"));
+        ArrayList<String> lightArmor = new ArrayList<>(Arrays.asList("boots", "gloves",
+                "pants", "shirt", "belt", "bracers", "cloak", "robe"));
+        ArrayList<String> damageItems = new ArrayList<>(Arrays.asList("sword", "ring",
+                "amulet", "trinket"));
+
+        Random r = new Random();
+        int low = 1;
+        int med = 4;
+        int high = 6;
+
+
+        String[] armorRandom = {bundle.getString("armor_use1"), bundle.getString("armor_use2"), bundle.getString("armor_use3"),bundle.getString("armor_use4"), bundle.getString("armor_use5"), bundle.getString("armor_use6"),bundle.getString("armor_use7")};
+        String armorRandomResponse = armorRandom[r.nextInt(armorRandom.length)];
+
+        String[] weaponRandom = {bundle.getString("weapon_use1"), bundle.getString("weapon_use2"), bundle.getString("weapon_use3"),bundle.getString("weapon_use4"), bundle.getString("weapon_use5"), bundle.getString("weapon_use6"),bundle.getString("weapon_use7")};
+        String weaponRandomResponse = weaponRandom[r.nextInt(weaponRandom.length)];
+
+        if (heavyArmor.contains(item)) {
+            gameOutputPanel.appendGameTextArea(bundle.getString("armor_use0") + item + armorRandomResponse);
+            setArmorRating(getArmorRating() + r.nextInt(high - low) + low);
+            getInventory().remove(item);
+        } else if (damageItems.contains(item)) {
+            gameOutputPanel.appendGameTextArea(bundle.getString("weapon_use0") + item + weaponRandomResponse);
+            setAttackPower(getAttackPower() + r.nextInt(high - med) + med);
+            getInventory().remove(item);
+
+        } else if (lightArmor.contains(item)) {
+            gameOutputPanel.appendGameTextArea(bundle.getString("armor_use0") + item + armorRandomResponse);
+            setArmorRating(getArmorRating() + r.nextInt(med - low) + low);
+            getInventory().remove(item);
+        } else if (item.equals("health potion")) {
+            gameOutputPanel.appendGameTextArea(bundle.getString("health_potion"));
+            setHealth(100);
+            getInventory().remove("health potion");
+
+        } else if (item.equals("blood sample")) {
+            gameOutputPanel.appendGameTextArea(bundle.getString("blood_sample"));
+        }
+        else if (item.equals("armor")){
+            armor = true;
+            gameOutputPanel.appendGameTextArea(bundle.getString("armor_eq"));
+            getInventory().remove("armor");
+        }else if (item.equals("invisibility cloak")){
+            visible = false;
+            gameOutputPanel.appendGameTextArea(bundle.getString("vanish"));
+            getInventory().remove("invisibility cloak");
+        }else if (item.equals("sword")){
+            setAttackPower(getAttackPower() + 20);
+            getInventory().remove("sword");
+        }
+        else{
+            gameOutputPanel.appendGameTextArea("Item does nothing!");
+        }
+    }
+
     @Override
     public String toString() {
         return super.toString() +

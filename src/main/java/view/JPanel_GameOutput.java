@@ -9,6 +9,8 @@ public class JPanel_GameOutput extends JPanel{
     public JPanel_GameOutput() {
         this.setBackground(Color.gray);
         this.setBorder(BorderFactory.createLineBorder(Color.black));
+        this.setBorder(BorderFactory.createEmptyBorder(0,0,20,-210));
+
         this.setBounds(20,20,1000,270);
         //this.setLayout(new FlowLayout(FlowLayout.CENTER, 10, 10));
 

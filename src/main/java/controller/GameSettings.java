@@ -2,10 +2,7 @@ package main.java.controller;
 
 import main.java.client.Client;
 import main.java.model.RoomMovement;
-import main.java.view.JPanel_GameOutput;
-import main.java.view.JPanel_UserInput;
-import main.java.view.Story;
-import main.java.view.TextColor;
+import main.java.view.*;
 
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
@@ -76,6 +73,23 @@ public class GameSettings {
             }
         }
     }
+
+    public void startGuiGame(JPanel_GameOutput gameOutputPanel) throws IOException {
+        List<String> emptyInventory = new ArrayList<>();
+        GameController.wolfKingPrompt = true;
+        GameController.player.setHealth(100);
+        GameController.player.setAttackPower(10);
+        GameController.player.setArmorRating(10);
+        GameController.timer = 0;
+        GameController.player.setInventory(emptyInventory);
+
+        RoomMovement movement = new RoomMovement();
+        movement.guiFirstRoom(gameOutputPanel);
+        View.guiMenu();
+//        GameController gameController = new GameController();
+//        gameController.guiUserChoice(gameOutputPanel);
+    }
+
     public void endGame() {
         System.out.println(TextColor.WHITE+bundle.getString("game_over1"));
         sleep(1000);
