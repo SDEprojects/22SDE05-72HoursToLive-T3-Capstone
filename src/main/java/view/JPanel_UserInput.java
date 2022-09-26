@@ -4,10 +4,14 @@ import main.java.controller.GUIGameController;
 import main.java.controller.GameController;
 
 import javax.swing.*;
+import javax.swing.text.JTextComponent;
+import javax.swing.text.MaskFormatter;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+
+
 
 public class JPanel_UserInput extends JPanel {
     private static String userInput = "";
@@ -54,9 +58,11 @@ public class JPanel_UserInput extends JPanel {
             userInput = String.valueOf(JPanel_UserInput.getUserInputTextField().getText());
             try {
                 GUIGameController.handleEnterKey(userInput);
+                userInputTextField.setText("");
             } catch (IOException ex) {
                 throw new RuntimeException(ex);
             }
+
         }
     }
 }
