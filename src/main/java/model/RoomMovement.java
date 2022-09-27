@@ -2,6 +2,7 @@ package main.java.model;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import main.java.controller.GameController;
 import main.java.view.JPanel_GameOutput;
 import main.java.view.TextColor;
 
@@ -15,6 +16,8 @@ public class RoomMovement {
     // fields
     public static String currentRoom;
     public static Room roomSwitcher;
+
+    public static HashMap<String, List<Werewolf>> monsterMap = new HashMap<>();
 
     // defining lists and setting up for JSON parsing
     //    Room room = new Room();
@@ -96,6 +99,8 @@ public class RoomMovement {
         gameOutputPanel.appendGameTextArea(bundle.getString("firstRoom_text3"));
         gameOutputPanel.appendGameTextArea(bundle.getString("firstRoom_text4") + room.getName()+ ".\n" );
         gameOutputPanel.appendGameTextArea("\n" + room.getDescription() + "\n");
+
+        monsterMap = makeMonsterMap(currentRoom);
     }
 
     // method allows player to transition rooms
@@ -130,5 +135,20 @@ public class RoomMovement {
 
     public static String getCurrentRoom() {
         return currentRoom;
+    }
+
+    public static HashMap<String, List<Werewolf>> makeMonsterMap(String room) {
+        Random random = new Random();
+        HashMap<String, Room> allMap = RoomMovement.getAllRooms();
+        HashMap<String, List<Werewolf>> monsterMap = new HashMap<>();
+        for (String key : allMap.keySet()) {
+            monsterMap.put(key, new LinkedList<>());
+            if (key.equals("Throne Room")) {
+                monsterMap.get(key).add(GameController.wolfKing);
+            } else if (random.nextBoolean() && !key.equals(room)) {
+                monsterMap.get(key).add(new Werewolf());
+            }
+        }
+        return monsterMap;
     }
 }
