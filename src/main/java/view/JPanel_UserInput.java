@@ -21,13 +21,14 @@ public class JPanel_UserInput extends JPanel {
     public JPanel_UserInput() {
         this.setBackground(Color.gray);
         this.setBorder(BorderFactory.createLineBorder(Color.black));
-        this.setBorder(BorderFactory.createEmptyBorder(0,0,20,-100));
+        this.setBorder(BorderFactory.createEmptyBorder(0,0,20,-560));
         this.setBounds(0,570,1250,155);
 
         userInputTextField.setPreferredSize(new Dimension(1250, 150));
         userInputTextField.setFont(new Font("", Font.PLAIN, 24));
         userInputTextField.setBackground(new Color(5,8,6));
         userInputTextField.setForeground(Color.green);
+        userInputTextField.setToolTipText("Enter your choice here");
         userInputTextField.addActionListener(new EnterKeyListener());
         this.add(userInputTextField);
     }
