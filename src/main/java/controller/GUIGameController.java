@@ -188,23 +188,6 @@ public class GUIGameController {
         }
     }
 
-//    private static void continueGameCheck() {                               // @ end of each if, call an end game function!!!!!
-//        if (GameController.player.getHealth() <= 0) {
-//            gameOutputPanel.appendGameTextArea(bundle.getString("player_dead1") + "\n");
-//            endGuiGame();
-//        }
-//        else if (GameController.timer== 24){
-//            gameOutputPanel.appendGameTextArea(bundle.getString("time_out1") + "\n");
-//            gameOutputPanel.appendGameTextArea(bundle.getString("time_out2") + "\n");
-//            endGuiGame();
-//        }
-//        else if (GameController.player.getInventory().contains("Trophy")) {
-//            gameOutputPanel.appendGameTextArea(bundle.getString("trophy_response1") + "\n");
-//            gameOutputPanel.appendGameTextArea(bundle.getString("trophy_response2") + "\n");
-//            endGuiGame();
-//        }
-//    }
-
     static void endGuiGame() {
         gameOutputPanel.appendGameTextArea(bundle.getString("game_over1") + "\n");
         gameOutputPanel.appendGameTextArea(bundle.getString("game_over2"));

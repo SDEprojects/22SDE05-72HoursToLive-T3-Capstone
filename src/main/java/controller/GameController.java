@@ -16,8 +16,6 @@ public class GameController {
     public static WerewolfKing wolfKing = new WerewolfKing();
     public static int timer = 0;
     public static boolean moonTrigger = true;
-//    private String currentRoom = RoomMovement.currentRoom;
-//    private HashMap<String, List<Werewolf>> monsterMap = getMonsterMap(currentRoom);
     private static final ResourceBundle bundle = ResourceBundle.getBundle("main.resources.strings");
     private static boolean werewolfCanAttack = true;
     public static boolean wolfKingPrompt = true;
@@ -226,16 +224,10 @@ public class GameController {
             String werewolfAttackResponse = werewolfAttack[ran.nextInt(werewolfAttack.length)];
 
             currentRoom = RoomMovement.currentRoom;
-            HashMap<String, List<Werewolf>> monsterMap = getMonsterMap(currentRoom);
+            HashMap<String, List<Werewolf>> monsterMap = RoomMovement.monsterMap;
             checkFullMoon(monsterMap);
+            //gameOutputPanel.appendGameTextArea(monsterMap + "\n\n");
 
-            if (!monsterMap.get(currentRoom).isEmpty() && werewolfCanAttack) {
-                Werewolf wolf = monsterMap.get(currentRoom).get(0);
-                wolf.attack(player);
-                gameOutputPanel.appendGameTextArea(wolf.getName() + " " + werewolfAttackResponse);
-                gameOutputPanel.appendGameTextArea(bundle.getString("health_status1") + player.getHealth() + "!\n");
-                werewolfCanAttack = false;
-            }
             if (timer > 19) {
                 gameOutputPanel.appendGameTextArea(bundle.getString("hours_status1") + (72 - (timer * 3)) + " " + bundle.getString("hours_status2"));
             }
@@ -256,7 +248,7 @@ public class GameController {
                     RoomMovement.switchRooms(r1.getLocation());
                     room = RoomMovement.roomSwitcher;
                     gameOutputPanel.appendGameTextArea(bundle.getString("go1") + room.getName() + ".\n");
-                    gameOutputPanel.appendGameTextArea(room.getDescription() + "\n");
+                    gameOutputPanel.appendGameTextArea(room.getDescription() + "\n\n");
                     timer++;
                     if (room.getName().equalsIgnoreCase("Throne Room") && wolfKingPrompt) {
                         gameOutputPanel.appendGameTextArea(bundle.getString("werewolfKing_attack1"));
@@ -372,6 +364,15 @@ public class GameController {
             }
             continueGameCheck();
             View.guiMenu();
+
+            currentRoom = RoomMovement.currentRoom;
+            if (!monsterMap.get(currentRoom).isEmpty() && werewolfCanAttack) {
+                Werewolf wolf = monsterMap.get(currentRoom).get(0);
+                wolf.attack(player);
+                gameOutputPanel.appendGameTextArea(wolf.getName() + " " + werewolfAttackResponse);
+                gameOutputPanel.appendGameTextArea(bundle.getString("health_status1") + player.getHealth() + "!\n");
+                werewolfCanAttack = false;
+            }
 
         } catch (NullPointerException e) {
             throw new NullPointerException();

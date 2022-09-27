@@ -1,16 +1,15 @@
 package main.java.controller;
 
 import main.java.client.Client;
+import main.java.model.Room;
 import main.java.model.RoomMovement;
+import main.java.model.Werewolf;
 import main.java.view.*;
 
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.ResourceBundle;
-import java.util.Scanner;
+import java.util.*;
 
 public class GameSettings {
     public static String roomName;
@@ -86,8 +85,6 @@ public class GameSettings {
         RoomMovement movement = new RoomMovement();
         movement.guiFirstRoom(gameOutputPanel);
         View.guiMenu();
-//        GameController gameController = new GameController();
-//        gameController.guiUserChoice(gameOutputPanel);
     }
 
     public void endGame() {
@@ -116,6 +113,7 @@ public class GameSettings {
             }
         }
     }
+
     public void sleep(int timer) {
         try {
             Thread.sleep(timer);
