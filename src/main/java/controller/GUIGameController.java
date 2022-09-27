@@ -220,9 +220,9 @@ public class GUIGameController {
         @Override
         public void actionPerformed(ActionEvent e) {
             gameOutputPanel.clearGameTextArea();
-            gameOutputPanel.appendGameTextArea("\nGAME INFO\n\n");
-            gameOutputPanel.appendGameTextArea(bundle.getString("help_intro"));
-            gameOutputPanel.appendGameTextArea(bundle.getString("help_menu"));
+            gameOutputPanel.appendGameTextArea("GAME INFO\n");
+            gameOutputPanel.appendGameTextArea(bundle.getString("help_intro") + "\n");
+            gameOutputPanel.appendGameTextArea(bundle.getString("help_menu_GUI"));
         }
     }
 
