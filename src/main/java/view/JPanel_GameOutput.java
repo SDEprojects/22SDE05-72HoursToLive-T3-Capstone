@@ -2,14 +2,12 @@ package main.java.view;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.ResourceBundle;
 
 public class JPanel_GameOutput extends JPanel{
     JTextArea gameTextArea = new JTextArea("", 35, 103);
     public JPanel_GameOutput() {
         this.setBackground(Color.gray);
         this.setBorder(BorderFactory.createLineBorder(Color.black));
-//        this.setBorder(BorderFactory.createEmptyBorder(0,0,20,-210));
         this.setBounds(0,0,1250,570);
 
         gameTextArea.setEditable(false);
