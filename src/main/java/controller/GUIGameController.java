@@ -159,6 +159,7 @@ public class GUIGameController {
         buttonsPanel.removeAll();
         buttonsPanel.revalidate();
         buttonsPanel.repaint();
+        buttonsPanel.setVisible(false);
 
         app.add(informationBar);
         app.add(mapPanel);

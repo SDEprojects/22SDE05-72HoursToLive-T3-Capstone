@@ -20,7 +20,7 @@ public class JPanel_InformationBar extends JPanel{
 
     public JPanel_InformationBar() {
         this.setBackground(Color.lightGray);
-        this.setBounds(0,300,1300,25);
+        this.setBounds(0,725,1250,25);
 
         this.add(new JLabel("Mode"));
         modeText.setBackground(Color.lightGray);
