@@ -1,11 +1,8 @@
 package main.java.view;
 
 import main.java.controller.GUIGameController;
-import main.java.controller.GameController;
 
 import javax.swing.*;
-import javax.swing.text.JTextComponent;
-import javax.swing.text.MaskFormatter;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

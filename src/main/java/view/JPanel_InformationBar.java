@@ -1,12 +1,10 @@
 package main.java.view;
 
 import main.java.controller.GameController;
-import main.java.controller.GameSettings;
 import main.java.model.RoomMovement;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.stream.Collectors;
 
 public class JPanel_InformationBar extends JPanel{
 

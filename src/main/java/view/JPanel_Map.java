@@ -5,7 +5,6 @@ import java.awt.*;
 
 public class JPanel_Map extends JPanel {
     public JPanel_Map() {
-        this.setLayout(new FlowLayout(FlowLayout.CENTER));
         this.setBackground(Color.black);
         this.setBorder(BorderFactory.createLineBorder(Color.black));
         this.setBounds(0,750,1250,225);

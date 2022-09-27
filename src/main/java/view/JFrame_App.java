@@ -2,8 +2,6 @@ package main.java.view;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class JFrame_App extends JFrame {
     public JFrame_App() throws HeadlessException {
