@@ -379,18 +379,6 @@ public class GameController {
                     werewolfCanAttack = false;
                     break;
             }
-            continueGameCheck();
-            View.guiMenu();
-
-
-//            if(r1.getVerb().equalsIgnoreCase("fail1")) {
-//                gameOutputPanel.appendGameTextArea(bundle.getString("invalid_input1"));
-//            } else if (r1.getVerb().equalsIgnoreCase("fail2")) {
-//                gameOutputPanel.appendGameTextArea(bundle.getString("invalid_input6"));
-//            } else if (r1.getVerb().equalsIgnoreCase("fail3")) {
-//                gameOutputPanel.appendGameTextArea(bundle.getString("invalid_input5"));
-//            }
-
             currentRoom = RoomMovement.currentRoom;
             if (!monsterMap.get(currentRoom).isEmpty() && werewolfCanAttack) {
                 Werewolf wolf = monsterMap.get(currentRoom).get(0);
@@ -399,6 +387,9 @@ public class GameController {
                 gameOutputPanel.appendGameTextArea(bundle.getString("health_status1") + player.getHealth() + "!\n");
                 werewolfCanAttack = false;
             }
+
+            continueGameCheck();
+            View.guiMenu();
 
         } catch (NullPointerException e) {
             throw new NullPointerException();

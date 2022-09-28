@@ -11,6 +11,8 @@ import java.util.ResourceBundle;
 
 public class GUIGameController {
 
+    public static String modeString = "";
+
     static JFrame_App app = new JFrame_App();
     public static final JPanel_GameOutput gameOutputPanel = new JPanel_GameOutput();
     private static final JPanel_UserInput userInputPanel = new JPanel_UserInput();
@@ -164,31 +166,31 @@ public class GUIGameController {
         goNorth.setBounds(120, 400, 100, 40);
         goNorth.setBackground(Color.black);
         goNorth.setForeground(new Color(30, 81, 40));
-//        goNorth.addActionListener(new handleEasyBtnClick());
+        goNorth.addActionListener(new handleGoNorthBtnClick());
 
         goEast.setText("Go East");
         goEast.setBounds(340, 400, 100, 40);
         goEast.setBackground(Color.black);
         goEast.setForeground(new Color(30, 81, 40));
-//        goEast.addActionListener(new handleMedBtnClick());
+        goEast.addActionListener(new handleGoEastBtnClick());
 
         goSouth.setText("Go South");
         goSouth.setBounds(560, 400, 100, 40);
         goSouth.setBackground(Color.black);
         goSouth.setForeground(new Color(30, 81, 40));
-//        goSouth.addActionListener(new handleHardBtnClick());
+        goSouth.addActionListener(new handleGoSouthBtnClick());
 
         goWest.setText("Go West");
         goWest.setBounds(780, 400, 100, 40);
         goWest.setBackground(Color.black);
         goWest.setForeground(new Color(30, 81, 40));
-//        goWest.addActionListener(new handleImpossBtnClick());
+        goWest.addActionListener(new handleGoWestBtnClick());
 
         attack.setText("Attack");
         attack.setBounds(780, 400, 100, 40);
         attack.setBackground(Color.black);
-        attack.setForeground(Color.blue);
-//        goWest.addActionListener(new handleImpossBtnClick());
+        attack.setForeground(Color.red);
+        attack.addActionListener(new handleAttackBtnClick());
 
         buttonsPanel.removeAll();
         buttonsPanel.revalidate();
@@ -287,7 +289,7 @@ public class GUIGameController {
         @Override
         public void actionPerformed(ActionEvent e) {
             difficulty = 0;
-            gameOutputPanel.appendGameTextArea("YOU HAVE SELECTED EASY MODE " + difficulty);
+            modeString = "Easy";
             startIntro();
         }
     }
@@ -297,7 +299,7 @@ public class GUIGameController {
         @Override
         public void actionPerformed(ActionEvent e) {
             difficulty = 4;
-            gameOutputPanel.appendGameTextArea("YOU HAVE SELECTED MEDIUM MODE " + difficulty);
+            modeString = "Medium";
             startIntro();
         }
     }
@@ -307,7 +309,7 @@ public class GUIGameController {
         @Override
         public void actionPerformed(ActionEvent e) {
             difficulty = 7;
-            gameOutputPanel.appendGameTextArea("YOU HAVE SELECTED HARD MODE " + difficulty);
+            modeString = "Hard";
             startIntro();
         }
     }
@@ -317,7 +319,7 @@ public class GUIGameController {
         @Override
         public void actionPerformed(ActionEvent e) {
             difficulty = 11;
-            gameOutputPanel.appendGameTextArea("YOU HAVE SELECTED IMPOSSIBLE MODE " + difficulty);
+            modeString = "Impossible";
             startIntro();
         }
     }
@@ -361,8 +363,12 @@ public class GUIGameController {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-
-
+            gameOutputPanel.clearGameTextArea();
+            try {
+                gameController.guiUserChoice(gameOutputPanel, "go north");
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
         }
 
     }
@@ -371,7 +377,12 @@ public class GUIGameController {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-
+            gameOutputPanel.clearGameTextArea();
+            try {
+                gameController.guiUserChoice(gameOutputPanel, "go east");
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
         }
 
     }
@@ -380,30 +391,39 @@ public class GUIGameController {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-
-
+            gameOutputPanel.clearGameTextArea();
+            try {
+                gameController.guiUserChoice(gameOutputPanel, "go south");
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
         }
-
     }
 
     private static class handleGoWestBtnClick implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-
-
+            gameOutputPanel.clearGameTextArea();
+            try {
+                gameController.guiUserChoice(gameOutputPanel, "go west");
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
         }
-
     }
 
-    private static class handlAttackBtnClick implements ActionListener {
+    private static class handleAttackBtnClick implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-
-
+            gameOutputPanel.clearGameTextArea();
+            try {
+                gameController.guiUserChoice(gameOutputPanel, "attack");
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
         }
-
     }
 
 
