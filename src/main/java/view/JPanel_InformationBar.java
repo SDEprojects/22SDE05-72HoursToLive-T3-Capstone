@@ -1,16 +1,15 @@
 package main.java.view;
 
+import main.java.controller.GUIGameController;
 import main.java.controller.GameController;
-import main.java.controller.GameSettings;
 import main.java.model.RoomMovement;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.stream.Collectors;
 
 public class JPanel_InformationBar extends JPanel{
 
-    public static JTextArea modeText = new JTextArea("Easy");
+    public static JTextArea modeText = new JTextArea(GUIGameController.modeString);
     public static JTextArea hoursRemainingText = new JTextArea(String.valueOf(72 - (GameController.timer * 3)));
     public static JTextArea healthText = new JTextArea(String.valueOf(GameController.player.getHealth()));
     public static JTextArea armorText = new JTextArea(String.valueOf(GameController.player.getArmorRating()));
@@ -20,7 +19,7 @@ public class JPanel_InformationBar extends JPanel{
 
     public JPanel_InformationBar() {
         this.setBackground(Color.lightGray);
-        this.setBounds(0,300,1300,25);
+        this.setBounds(0,725,1250,25);
 
         this.add(new JLabel("Mode"));
         modeText.setBackground(Color.lightGray);

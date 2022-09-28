@@ -2,17 +2,15 @@ package main.java.view;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.ResourceBundle;
 
 public class JPanel_GameOutput extends JPanel{
-    JTextArea gameTextArea = new JTextArea("", 15, 100);
+    JTextArea gameTextArea = new JTextArea("", 32, 103);
     public JPanel_GameOutput() {
         this.setBackground(Color.gray);
         this.setBorder(BorderFactory.createLineBorder(Color.black));
-        this.setBorder(BorderFactory.createEmptyBorder(0,0,20,-210));
+        this.setBounds(0,0,1250,530);
+        this.setBorder(BorderFactory.createEmptyBorder(0,0,20,-505));
 
-        this.setBounds(20,20,1000,270);
-        //this.setLayout(new FlowLayout(FlowLayout.CENTER, 10, 10));
 
         gameTextArea.setEditable(false);
         gameTextArea.setForeground(Color.green);
@@ -20,13 +18,10 @@ public class JPanel_GameOutput extends JPanel{
         gameTextArea.setSelectionColor(Color.green);
         gameTextArea.setLineWrap(true);
         gameTextArea.setWrapStyleWord(true);
+        gameTextArea.setFont(new Font("", Font.PLAIN, 18));
         gameTextArea.setToolTipText("Enter your response in the panel below");
         gameTextArea.setText("WELCOME TO 72 HOURS");
         this.add(gameTextArea);
-    }
-
-    public String getGameTextArea() {
-        return gameTextArea.getText();
     }
 
     public void clearGameTextArea() {
