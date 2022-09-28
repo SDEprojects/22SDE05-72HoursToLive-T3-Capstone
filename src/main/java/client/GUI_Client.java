@@ -12,13 +12,6 @@ import java.io.IOException;
 public class GUI_Client {
     /* This is the main class of the game. It is responsible for starting the game. */
     public static void main(String[] args) throws IOException, UnsupportedAudioFileException, LineUnavailableException {
-//        JFrame_App app = new JFrame_App();
-//        GameSettings gameSettings = new GameSettings();
-//        Music music = new Music();
-//        music.playMusic();
-//        gameSettings.readGameStory(app.getGameOutputPanel(), app.getUserInputPanel());
-//        gameSettings.startGame();
-//        gameSettings.endGame();
 
         GUIGameController gui = new GUIGameController();
     }

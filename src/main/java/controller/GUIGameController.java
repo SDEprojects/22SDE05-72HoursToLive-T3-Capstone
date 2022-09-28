@@ -35,12 +35,6 @@ public class GUIGameController {
     static JButton yesBtn = new JButton();
     static JButton noBtn = new JButton();
 
-    static JButton goNorth = new JButton();
-    static JButton goEast = new JButton();
-    static JButton goSouth = new JButton();
-    static JButton goWest = new JButton();
-    static JButton attack = new JButton();
-
     public static int difficulty = 0;
 
     public static GameSettings gameSettings = new GameSettings();
@@ -167,6 +161,15 @@ public class GUIGameController {
 
     private static void setUpGameScreen() {
         gameOutputPanel.clearGameTextArea();
+        buttonsPanel.removeAll();
+        buttonsPanel.revalidate();
+        buttonsPanel.repaint();
+
+        JButton goNorth = new JButton();
+        JButton goEast = new JButton();
+        JButton goSouth = new JButton();
+        JButton goWest = new JButton();
+        JButton attack = new JButton();
 
         goNorth.setText("Go North");
         goNorth.setBounds(120, 400, 100, 40);
