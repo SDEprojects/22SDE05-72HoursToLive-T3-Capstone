@@ -8,10 +8,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
 import java.io.IOException;
-import java.util.EventListener;
 import java.util.ResourceBundle;
 
 
@@ -24,9 +21,6 @@ public class GUIGameController {
     private static final JPanel_UserInput userInputPanel = new JPanel_UserInput();
     private static final JPanel_InformationBar informationBar = new JPanel_InformationBar();
     private static final JPanel_Map mapPanel = new JPanel_Map();
-
-    private static final JPanel_ButtonsPanel buttonsPanel = new JPanel_ButtonsPanel();
-
 
     static JPanel buttonsPanel = new JPanel();
     static JButton playBtn = new JButton();
@@ -78,12 +72,9 @@ public class GUIGameController {
         musicBtn.setText("MUSIC");
         musicBtn.setBounds(560, 400, 100, 40);
         musicBtn.setBackground(Color.black);
-
         musicBtn.setForeground(Color.green);
         musicBtn.addActionListener(new handleMusicBtnClick());
-
         musicBtn.setForeground(new Color(30, 81, 40));
-
 
         menuBtn.setText("MAIN MENU");
         menuBtn.setBounds(780, 400, 100, 40);
@@ -91,9 +82,7 @@ public class GUIGameController {
         menuBtn.setForeground(new Color(30, 81, 40));
         menuBtn.addActionListener(new handleMenuBtnClick());
 
-
         Music.playMusic();
-
 
         app.add(gameOutputPanel);
         app.add(buttonsPanel);
@@ -150,11 +139,6 @@ public class GUIGameController {
     private static void startIntro() {
         setUpStoryLine();
     }
-
-    private static void startMusic() throws UnsupportedAudioFileException, LineUnavailableException, IOException {
-        playMusic();
-    }
-
 
     private static void setUpStoryLine() {
         gameOutputPanel.clearGameTextArea();
