@@ -7,8 +7,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.ResourceBundle;
 
-//ALL Scanners and SOUTs need to be replaced with a "Printer" class
-
 public class GameMap {
     static final ResourceBundle bundle = ResourceBundle.getBundle("main.resources.strings");
 

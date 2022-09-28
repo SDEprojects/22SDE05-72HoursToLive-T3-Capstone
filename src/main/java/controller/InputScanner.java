@@ -2,11 +2,12 @@ package main.java.controller;
 
 import main.java.model.Room;
 import main.java.model.RoomMovement;
-import main.java.view.JPanel_GameOutput;
 import main.java.view.TextColor;
 
 import java.io.IOException;
 import java.util.*;
+
+import static main.java.controller.GUIGameController.gameOutputPanel;
 
 public class InputScanner {
     private static final ResourceBundle bundle = ResourceBundle.getBundle("main.resources.strings");
@@ -49,34 +50,25 @@ public class InputScanner {
         return r1;
     }
 
-    public static Response getValidGuiResponse(JPanel_GameOutput gameOutputPanel, String userInput) throws IOException {
+    public static Response getValidGuiResponse(String userInput) throws IOException {
         Room room = RoomMovement.roomSwitcher;
-//        Scanner scanner = new Scanner(System.in);
-//        gameOutputPanel.appendGameTextArea(bundle.getString("input_scanner_ask"));
-//        String choice = (scanner.nextLine()).toLowerCase();
+
         TextParser textParser = new TextParser();
         Response r1 = textParser.getCommands(userInput);
         ArrayList<String> validDirections = new ArrayList<>(Arrays.asList("north", "south", "east", "west"));
 
         try {
             if (!r1.isValid()) {
-                gameOutputPanel.appendGameTextArea(bundle.getString("invalid_input1"));
-                sleep(200);
-                r1 = getValidResponse();
+                r1 = new Response("fail1", "", "");
             } else if (r1.getVerb().equals("go") && Objects.equals(room.getConnectedRooms().get(r1.getLocation()), "None")) {
-                gameOutputPanel.appendGameTextArea(bundle.getString("invalid_input6"));
-                sleep(200);
-                r1 = getValidResponse();
+                r1 = new Response("fail2", "", "");
             } else if (r1.getVerb().equals("go") && !(validDirections.contains(r1.getLocation()))) {
-                gameOutputPanel.appendGameTextArea(bundle.getString("invalid_input5"));
-                r1 = getValidResponse();
+                r1 = new Response("fail3", "", "");
             }
             return r1;
 
         } catch (NullPointerException e) {
-            gameOutputPanel.appendGameTextArea(bundle.getString("invalid_input1"));
-            sleep(200);
-            r1 = getValidResponse();
+            r1 = new Response("fail1", "", "");
         }
 
         return r1;

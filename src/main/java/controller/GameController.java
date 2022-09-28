@@ -16,11 +16,10 @@ public class GameController {
     public static WerewolfKing wolfKing = new WerewolfKing();
     public static int timer = 0;
     public static boolean moonTrigger = true;
-//    private String currentRoom = RoomMovement.currentRoom;
-//    private HashMap<String, List<Werewolf>> monsterMap = getMonsterMap(currentRoom);
     private static final ResourceBundle bundle = ResourceBundle.getBundle("main.resources.strings");
     private static boolean werewolfCanAttack = true;
     public static boolean wolfKingPrompt = true;
+    public static Response r1 = new Response("", "", "");
 
 
     public void userChoice() throws IOException {
@@ -216,9 +215,9 @@ public class GameController {
     }
 
     public void guiUserChoice(JPanel_GameOutput gameOutputPanel, String userInput) throws IOException {
-        //gameOutputPanel.appendGameTextArea("\n" + userInput + "FROM THE GAME CONTROLLER");
 
         String currentRoom;
+
         try {
             Random ran = new Random();
 
@@ -226,29 +225,23 @@ public class GameController {
             String werewolfAttackResponse = werewolfAttack[ran.nextInt(werewolfAttack.length)];
 
             currentRoom = RoomMovement.currentRoom;
-            HashMap<String, List<Werewolf>> monsterMap = getMonsterMap(currentRoom);
+            HashMap<String, List<Werewolf>> monsterMap = RoomMovement.monsterMap;
             checkFullMoon(monsterMap);
 
-            if (!monsterMap.get(currentRoom).isEmpty() && werewolfCanAttack) {
-                Werewolf wolf = monsterMap.get(currentRoom).get(0);
-                wolf.attack(player);
-                gameOutputPanel.appendGameTextArea(wolf.getName() + " " + werewolfAttackResponse);
-                gameOutputPanel.appendGameTextArea(bundle.getString("health_status1") + player.getHealth() + "!\n");
-                werewolfCanAttack = false;
-            }
             if (timer > 19) {
                 gameOutputPanel.appendGameTextArea(bundle.getString("hours_status1") + (72 - (timer * 3)) + " " + bundle.getString("hours_status2"));
             }
 
             View.guiMenu();
             Room room = RoomMovement.roomSwitcher;
-            Response r1 = InputScanner.getValidGuiResponse(gameOutputPanel, userInput);
+            Response r1 = InputScanner.getValidGuiResponse(userInput);
 
             if (r1.getVerb().equalsIgnoreCase("use") && currentRoom.equalsIgnoreCase("Time Portal") && player.getInventory().contains(r1.getNoun())) {
                 if (r1.getNoun().equalsIgnoreCase("blood sample")) {
                     player.pickup("Trophy");
                 }
             }
+
             switch (r1.getVerb()) {
                 case "go":
                     moonTrigger = true;
@@ -256,7 +249,7 @@ public class GameController {
                     RoomMovement.switchRooms(r1.getLocation());
                     room = RoomMovement.roomSwitcher;
                     gameOutputPanel.appendGameTextArea(bundle.getString("go1") + room.getName() + ".\n");
-                    gameOutputPanel.appendGameTextArea(room.getDescription() + "\n");
+                    gameOutputPanel.appendGameTextArea(room.getDescription() + "\n\n");
                     timer++;
                     if (room.getName().equalsIgnoreCase("Throne Room") && wolfKingPrompt) {
                         gameOutputPanel.appendGameTextArea(bundle.getString("werewolfKing_attack1"));
@@ -264,6 +257,7 @@ public class GameController {
                     }
 
                     break;
+
                 case "pickup":
                     if (player.getInventory().size() > 2) {
                         werewolfCanAttack = false;
@@ -279,6 +273,7 @@ public class GameController {
                         gameOutputPanel.appendGameTextArea(bundle.getString("pickup4"));
                     }
                     break;
+
                 case "look":
                     //gameOutputPanel.appendGameTextArea("\n" + room.getDescription());
                     gameOutputPanel.appendGameTextArea(bundle.getString("look1"));
@@ -293,6 +288,7 @@ public class GameController {
                     }
                     werewolfCanAttack = true;
                     break;
+
                 case "use":
                     if (player.getInventory().contains(r1.getNoun())) {
                         player.guiUseItems(r1.getNoun());
@@ -301,6 +297,7 @@ public class GameController {
                     }
                     werewolfCanAttack = false;
                     break;
+
                 case "attack":
                     if (monsterMap.get(currentRoom).isEmpty()) {
                         gameOutputPanel.appendGameTextArea(bundle.getString("attack1"));
@@ -339,15 +336,13 @@ public class GameController {
                     }
                     werewolfCanAttack = false;
                     break;
-//                case "help":
-//                    werewolfCanAttack = false;
-//                    gameOutputPanel.appendGameTextArea(Story.infoMenu + "\n" + Story.infoBanner + Story.infoMenu);
-//                    gameOutputPanel.appendGameTextArea(bundle.getString("help_menu"));
-//                    Scanner helpScanner = new Scanner(System.in);
-//                    if (helpScanner.hasNextLine()) {
-//                        for (int i = 0; i < 70; ++i) System.out.println();
-//                        break;
-//                    }
+
+                case "help":
+                    werewolfCanAttack = false;
+                    gameOutputPanel.appendGameTextArea(bundle.getString("help_intro") + "\n");
+                    gameOutputPanel.appendGameTextArea(bundle.getString("help_menu_GUI"));
+                    break;
+
 //                case "map":
 //                    werewolfCanAttack = false;
 //                    GameMap.showMap();
@@ -357,12 +352,26 @@ public class GameController {
 //                        for (int i = 0; i < 70; ++i) System.out.println();
 //                        break;
 //                    }
+
                 case "quit":
                     gameOutputPanel.appendGameTextArea(bundle.getString("quit_menu1"));
                     System.exit(0);
                     break;
+
                 case "music":
                     Music.playerSelectMusic();
+                    break;
+
+                case "fail1":
+                    gameOutputPanel.appendGameTextArea(bundle.getString("invalid_input1"));
+                    break;
+
+                case "fail2":
+                    gameOutputPanel.appendGameTextArea(bundle.getString("invalid_input6"));
+                    break;
+
+                case "fail3":
+                    gameOutputPanel.appendGameTextArea(bundle.getString("invalid_input5"));
                     break;
 
                 default:
@@ -370,6 +379,15 @@ public class GameController {
                     werewolfCanAttack = false;
                     break;
             }
+            currentRoom = RoomMovement.currentRoom;
+            if (!monsterMap.get(currentRoom).isEmpty() && werewolfCanAttack) {
+                Werewolf wolf = monsterMap.get(currentRoom).get(0);
+                wolf.attack(player);
+                gameOutputPanel.appendGameTextArea(wolf.getName() + " " + werewolfAttackResponse);
+                gameOutputPanel.appendGameTextArea(bundle.getString("health_status1") + player.getHealth() + "!\n");
+                werewolfCanAttack = false;
+            }
+
             continueGameCheck();
             View.guiMenu();
 

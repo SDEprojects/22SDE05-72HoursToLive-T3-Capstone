@@ -1,5 +1,6 @@
 package main.java.view;
 
+import main.java.controller.GUIGameController;
 import main.java.controller.GameController;
 import main.java.model.Room;
 import main.java.model.RoomMovement;
@@ -56,7 +57,7 @@ public class View {
             GameController.moonTrigger = false;
         }
 
-        JPanel_InformationBar.modeText.setText("Easy");
+        JPanel_InformationBar.modeText.setText(GUIGameController.modeString);
         JPanel_InformationBar.hoursRemainingText.setText(String.valueOf(72 - (GameController.timer * 3)));
         JPanel_InformationBar.healthText.setText(String.valueOf(GameController.player.getHealth()));
         JPanel_InformationBar.armorText.setText(String.valueOf(GameController.player.getArmorRating()));
