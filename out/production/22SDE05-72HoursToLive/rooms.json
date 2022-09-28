@@ -23,7 +23,7 @@
   },
   "Time Portal": {
     "name": "Time Portal",
-    "description": "Whatever this room was before, is now gone. All that remains is the portal back to your time - but you can't go back until you have the blood sample!",
+    "description": "Whatever this room was before, is now gone. All that remains is the portal back to your time\n- but you can't go back until you have the blood sample!",
     "items": [],
     "connectedRooms": {
       "north": "Pantry",
