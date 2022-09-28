@@ -9,7 +9,7 @@ public class JPanel_GameOutput extends JPanel{
         this.setBackground(Color.gray);
         this.setBorder(BorderFactory.createLineBorder(Color.black));
         this.setBounds(0,0,1250,530);
-        this.setBorder(BorderFactory.createEmptyBorder(0,0,20,-710));
+        this.setBorder(BorderFactory.createEmptyBorder(0,0,20,-505));
 
 
         gameTextArea.setEditable(false);
@@ -18,7 +18,7 @@ public class JPanel_GameOutput extends JPanel{
         gameTextArea.setSelectionColor(Color.green);
         gameTextArea.setLineWrap(true);
         gameTextArea.setWrapStyleWord(true);
-        gameTextArea.setFont(new Font("", Font.PLAIN, 20));
+        gameTextArea.setFont(new Font("", Font.PLAIN, 18));
         gameTextArea.setToolTipText("Enter your response in the panel below");
         gameTextArea.setText("WELCOME TO 72 HOURS");
         this.add(gameTextArea);
