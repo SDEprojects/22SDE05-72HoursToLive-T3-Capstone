@@ -55,24 +55,24 @@ public class GUIGameController {
         playBtn.setText("PLAY GAME");
         playBtn.setBounds(120, 400, 100, 40);
         playBtn.setBackground(Color.black);
-        playBtn.setForeground(Color.green);
+        playBtn.setForeground(new Color(30, 81, 40));
         playBtn.addActionListener(new handlePlayBtnClick());
 
         helpBtn.setText("HELP");
         helpBtn.setBounds(340, 400, 100, 40);
         helpBtn.setBackground(Color.black);
-        helpBtn.setForeground(Color.green);
+        helpBtn.setForeground(new Color(30, 81, 40));
         helpBtn.addActionListener(new handleHelpBtnClick());
 
         musicBtn.setText("MUSIC");
         musicBtn.setBounds(560, 400, 100, 40);
         musicBtn.setBackground(Color.black);
-        musicBtn.setForeground(Color.green);
+        musicBtn.setForeground(new Color(30, 81, 40));
 
         menuBtn.setText("MAIN MENU");
         menuBtn.setBounds(780, 400, 100, 40);
         menuBtn.setBackground(Color.black);
-        menuBtn.setForeground(Color.green);
+        menuBtn.setForeground(new Color(30, 81, 40));
         menuBtn.addActionListener(new handleMenuBtnClick());
 
         app.add(gameOutputPanel);
@@ -99,25 +99,25 @@ public class GUIGameController {
         easyBtn.setText("EASY");
         easyBtn.setBounds(120, 400, 100, 40);
         easyBtn.setBackground(Color.black);
-        easyBtn.setForeground(Color.green);
+        easyBtn.setForeground(new Color(30, 81, 40));
         easyBtn.addActionListener(new handleEasyBtnClick());
 
         medBtn.setText("MEDIUM");
         medBtn.setBounds(340, 400, 100, 40);
         medBtn.setBackground(Color.black);
-        medBtn.setForeground(Color.green);
+        medBtn.setForeground(new Color(30, 81, 40));
         medBtn.addActionListener(new handleMedBtnClick());
 
         hardBtn.setText("HARD");
         hardBtn.setBounds(560, 400, 100, 40);
         hardBtn.setBackground(Color.black);
-        hardBtn.setForeground(Color.green);
+        hardBtn.setForeground(new Color(30, 81, 40));
         hardBtn.addActionListener(new handleHardBtnClick());
 
         impossibleBtn.setText("IMPOSSIBLE");
         impossibleBtn.setBounds(780, 400, 100, 40);
         impossibleBtn.setBackground(Color.black);
-        impossibleBtn.setForeground(Color.green);
+        impossibleBtn.setForeground(new Color(30, 81, 40));
         impossibleBtn.addActionListener(new handleImpossBtnClick());
 
         buttonsPanel.add(easyBtn);
@@ -142,7 +142,7 @@ public class GUIGameController {
         startBtn.setText("START GAME");
         startBtn.setBounds(120, 400, 100, 40);
         startBtn.setBackground(Color.black);
-        startBtn.setForeground(Color.green);
+        startBtn.setForeground(new Color(30, 81, 40));
         startBtn.addActionListener(new handleStartBtnClick());
 
         buttonsPanel.add(startBtn);
@@ -162,25 +162,25 @@ public class GUIGameController {
         goNorth.setText("Go North");
         goNorth.setBounds(120, 400, 100, 40);
         goNorth.setBackground(Color.black);
-        goNorth.setForeground(Color.black);
+        goNorth.setForeground(new Color(30, 81, 40));
 //        goNorth.addActionListener(new handleEasyBtnClick());
 
         goEast.setText("Go East");
         goEast.setBounds(340, 400, 100, 40);
         goEast.setBackground(Color.black);
-        goEast.setForeground(Color.black);
+        goEast.setForeground(new Color(30, 81, 40));
 //        goEast.addActionListener(new handleMedBtnClick());
 
         goSouth.setText("Go South");
         goSouth.setBounds(560, 400, 100, 40);
         goSouth.setBackground(Color.black);
-        goSouth.setForeground(Color.black);
+        goSouth.setForeground(new Color(30, 81, 40));
 //        goSouth.addActionListener(new handleHardBtnClick());
 
         goWest.setText("Go West");
         goWest.setBounds(780, 400, 100, 40);
         goWest.setBackground(Color.black);
-        goWest.setForeground(Color.black);
+        goWest.setForeground(new Color(30, 81, 40));
 //        goWest.addActionListener(new handleImpossBtnClick());
 
         attack.setText("Attack");
