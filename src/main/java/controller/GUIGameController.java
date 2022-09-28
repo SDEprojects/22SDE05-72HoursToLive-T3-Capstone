@@ -75,6 +75,7 @@ public class GUIGameController {
         menuBtn.setForeground(new Color(30, 81, 40));
         menuBtn.addActionListener(new handleMenuBtnClick());
 
+
         app.add(gameOutputPanel);
         app.add(buttonsPanel);
         buttonsPanel.add(playBtn);
@@ -82,7 +83,7 @@ public class GUIGameController {
         buttonsPanel.add(musicBtn);
         buttonsPanel.add(menuBtn);
         app.pack();
-    };
+    }
 
     private static void startDifficultyScreen() {
         setupDifficultyScreen();
@@ -156,7 +157,7 @@ public class GUIGameController {
         gameOutputPanel.appendGameTextArea(bundle.getString("input_scanner_ask") + "\n");
     }
 
-    private static void setUpGameScreen() throws IOException {
+    private static void setUpGameScreen() {
         gameOutputPanel.clearGameTextArea();
 
         goNorth.setText("Go North");
@@ -355,5 +356,56 @@ public class GUIGameController {
             System.exit(0);
         }
     }
+
+    private static class handleGoNorthBtnClick implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+
+
+        }
+
+    }
+
+    private static class handleGoEastBtnClick implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+
+        }
+
+    }
+
+    private static class handleGoSouthBtnClick implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+
+
+        }
+
+    }
+
+    private static class handleGoWestBtnClick implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+
+
+        }
+
+    }
+
+    private static class handlAttackBtnClick implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+
+
+        }
+
+    }
+
+
 
 }
