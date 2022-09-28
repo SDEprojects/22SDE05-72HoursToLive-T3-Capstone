@@ -2,12 +2,18 @@ package main.java.controller;
 
 import main.java.view.*;
 
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.io.IOException;
+import java.util.EventListener;
 import java.util.ResourceBundle;
+
 
 public class GUIGameController {
 
@@ -18,6 +24,9 @@ public class GUIGameController {
     private static final JPanel_UserInput userInputPanel = new JPanel_UserInput();
     private static final JPanel_InformationBar informationBar = new JPanel_InformationBar();
     private static final JPanel_Map mapPanel = new JPanel_Map();
+
+    private static final JPanel_ButtonsPanel buttonsPanel = new JPanel_ButtonsPanel();
+
 
     static JPanel buttonsPanel = new JPanel();
     static JButton playBtn = new JButton();
@@ -44,11 +53,11 @@ public class GUIGameController {
     public static GameController gameController = new GameController();
     private static final ResourceBundle bundle = ResourceBundle.getBundle("main.resources.strings");
 
-    public GUIGameController() {
+    public GUIGameController() throws UnsupportedAudioFileException, LineUnavailableException, IOException {
         startWelcomeScreen();
     }
 
-    private void startWelcomeScreen() {
+    private void startWelcomeScreen() throws UnsupportedAudioFileException, LineUnavailableException, IOException {
         buttonsPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 10, 10));
         buttonsPanel.setBackground(Color.darkGray);
         buttonsPanel.setBounds(0, 530, 1250, 40);
@@ -69,13 +78,21 @@ public class GUIGameController {
         musicBtn.setText("MUSIC");
         musicBtn.setBounds(560, 400, 100, 40);
         musicBtn.setBackground(Color.black);
+
+        musicBtn.setForeground(Color.green);
+        musicBtn.addActionListener(new handleMusicBtnClick());
+
         musicBtn.setForeground(new Color(30, 81, 40));
+
 
         menuBtn.setText("MAIN MENU");
         menuBtn.setBounds(780, 400, 100, 40);
         menuBtn.setBackground(Color.black);
         menuBtn.setForeground(new Color(30, 81, 40));
         menuBtn.addActionListener(new handleMenuBtnClick());
+
+
+        Music.playMusic();
 
 
         app.add(gameOutputPanel);
@@ -133,6 +150,11 @@ public class GUIGameController {
     private static void startIntro() {
         setUpStoryLine();
     }
+
+    private static void startMusic() throws UnsupportedAudioFileException, LineUnavailableException, IOException {
+        playMusic();
+    }
+
 
     private static void setUpStoryLine() {
         gameOutputPanel.clearGameTextArea();
@@ -264,6 +286,18 @@ public class GUIGameController {
             gameOutputPanel.appendGameTextArea("GAME INFO\n");
             gameOutputPanel.appendGameTextArea(bundle.getString("help_intro") + "\n");
             gameOutputPanel.appendGameTextArea(bundle.getString("help_menu_GUI"));
+        }
+    }
+
+    private static class handleMusicBtnClick implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            try {
+                Music.guiPlayerSelectMusic();
+            } catch (UnsupportedAudioFileException | LineUnavailableException | IOException ex) {
+                throw new RuntimeException(ex);
+            }
         }
     }
 
